@@ -13,6 +13,7 @@ import org.yvka.Beleg1.utils.ArrayUtils.ArrayDimensions;
  */
 public class CommonOperations {
 	
+	
 	/**
 	 * <p>
 	 * Set the value of each element of the matrix to the corresponding value inside an array.<br>

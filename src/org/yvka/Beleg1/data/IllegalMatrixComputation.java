@@ -1,5 +1,13 @@
 package org.yvka.Beleg1.data;
 
+/**
+ * <p>
+ * Indicate an error which occurs while matrix computations.
+ * </p>
+ * 
+ * @author Yves Kaufmann
+ *
+ */
 public class IllegalMatrixComputation extends Exception {
 
 	/**
