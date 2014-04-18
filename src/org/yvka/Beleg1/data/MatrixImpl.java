@@ -25,9 +25,9 @@ public class MatrixImpl implements Matrix {
 	 * Create a new matrix with the specified dimension and fills 
 	 * her elements with zero. 
 	 * </p>
-	 * @param rows <br>Matrix's rows number.<br>
+	 * @param rows <br>the Matrix's rows number.<br>
 	 * 			   Must be inside the interval [1,7].
-	 * @param cols <br>Matrix's columns number.<br>
+	 * @param cols <br>the Matrix's columns number.<br>
 	 * 			   Must be inside the interval [1,7].
 	 */
 	public MatrixImpl(int rows, int cols) {
@@ -48,7 +48,7 @@ public class MatrixImpl implements Matrix {
 	 * which contains all elements of the array.
 	 * </p>
 	 * 
-	 * @param data The Elements of the array.
+	 * @param data the Elements of the array.
 	 */
 	public MatrixImpl(double data[][]) {
 		this(data.length, data.length < 1 ? 0 : data[0].length);
@@ -59,7 +59,7 @@ public class MatrixImpl implements Matrix {
 	 * Create a new matrix by copying the specified matrix.
 	 * The resulting matrix will have the same dimension and same elements.
 	 * 
-	 * @param matrix The matrix which is used as template for the copy process. 
+	 * @param matrix the matrix which is used as template for the copy process. 
 	 */
 	public MatrixImpl(Matrix matrix) {
 		this(matrix.toArray());
@@ -73,10 +73,10 @@ public class MatrixImpl implements Matrix {
 	}
 
 	@Override
-	public Matrix add(Matrix otherMatrix) throws IllegalMatrixComputation {
+	public Matrix add(Matrix otherMatrix) throws IllegalMatrixComputationException {
 		
 		if(getNumCols() != otherMatrix.getNumCols() || getNumRows() != otherMatrix.getNumRows()) {
-			throw new IllegalMatrixComputation("The addition of matrices with different dimensions is not possible.");
+			throw new IllegalMatrixComputationException("The addition of matrices with different dimensions is not possible.");
 		}
 		
 		for(MatrixElement el : otherMatrix) {
@@ -95,10 +95,10 @@ public class MatrixImpl implements Matrix {
 	}
 
 	@Override
-	public Matrix multiplyBy(Matrix otherMatrix) throws IllegalMatrixComputation {
+	public Matrix multiplyBy(Matrix otherMatrix) throws IllegalMatrixComputationException {
 		
 		if(getNumCols() != otherMatrix.getNumRows()) {
-			throw new IllegalMatrixComputation(
+			throw new IllegalMatrixComputationException(
 				"The multiplication isn't possible if the number of rows from the left matrix is different to the numbers of columns of the right matrix."
 			);
 		}
@@ -192,8 +192,8 @@ public class MatrixImpl implements Matrix {
 	/**
 	 * Ensure that the specified element index is inside the matrix. 
 	 * 
-	 * @param row Element's row index.
-	 * @param col Elements column index.
+	 * @param row the Element's row index.
+	 * @param col the Elements column index.
 	 */
 	private void ensureElementIndexIsInBound(int row, int col) {
 		if(!isInBounds(row, col)) {
@@ -202,12 +202,15 @@ public class MatrixImpl implements Matrix {
 	}
 	
 	
+	@SuppressWarnings("javadoc")
 	public static void main(String[] args) {
 		Matrix m = new MatrixImpl(new double[][] {
-				{1,2}, 
-				{1,3}	
+				{1,2,3}, 
+				{0,6,4},
+				{0,3,2}
+				
 		});
-		m.print();
+		CommonOperations.determineRangOfMatrix(m);
 	
 	}
 }

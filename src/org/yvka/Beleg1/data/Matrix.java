@@ -14,14 +14,14 @@ public interface Matrix extends Iterable<MatrixElement> {
 
 	/**
 	 * <p>
-	 * Adds a scalar 'value' to the specified matrix element.</br>
-	 * Basically, the following formula will be calculated.</br>
-	 *  </br>
-	 * M<sub>ij</sub>  = M<sub>ij</sub> + value </br>
+	 * Adds a scalar 'value' to the specified matrix element.<br>
+	 * Basically, the following formula will be calculated.<br>
+	 *  <br>
+	 * M<sub>ij</sub>  = M<sub>ij</sub> + value <br>
 	 * </p>
 	 * 
-	 * @param row Matrix element's row index
-	 * @param col Matrix element's column index
+	 * @param row the matrix element's row index
+	 * @param col the matrix element's column index
 	 * @param scalarValue The value that is added to the element.
 	 * @return The resulting matrix.
 	 */
@@ -32,14 +32,14 @@ public interface Matrix extends Iterable<MatrixElement> {
 	 * Performs a matrix addition by the following formula and 
 	 * returns the instance of the resulting matrix.<br> 
 	 * <br>
-	 * A + B := (a<sub>ij</sub> + b<sub>ij</sub>)<sub>i=1,...,m; j=1,...,n</sub></br>
+	 * A + B := (a<sub>ij</sub> + b<sub>ij</sub>)<sub>i=1,...,m; j=1,...,n</sub><br>
 	 * </p>
 	 * 
-	 * @param otherMatrix The matrix that is added to this matrix.
-	 * @return The resulting matrix.
-	 * @throws IllegalMatrixComputation Will be thrown if the dimension of both matrices are different.
+	 * @param otherMatrix the matrix that is added to this matrix.
+	 * @return the resulting matrix.
+	 * @throws IllegalMatrixComputationException if the dimension of both matrices are not equal.
 	 */
-	public Matrix add(Matrix otherMatrix) throws IllegalMatrixComputation;
+	public Matrix add(Matrix otherMatrix) throws IllegalMatrixComputationException;
 	
 	/**
 	 * <p>
@@ -49,8 +49,8 @@ public interface Matrix extends Iterable<MatrixElement> {
 	 * &lambda; * A := (&lambda; * a<sub>ij</sub>)<sub>i=1,...,m j=1,...,n</sub>
 	 * </p>
 	 * 
-	 * @param scalarValue The scalar value which should use for the scalar multiplication.
-	 * @return The instance of the resulting matrix.
+	 * @param scalarValue the scalar value which should use for the scalar multiplication.
+	 * @return the instance of the resulting matrix.
 	 */
 	public Matrix multiplyBy(double scalarValue);
 	
@@ -60,16 +60,16 @@ public interface Matrix extends Iterable<MatrixElement> {
 	 * and returns the resulting matrix instance. <br> 
 	 * Checks if the multiplication of both matrices is possible
 	 * otherwise a IllegalMatrixComputation Exception will be thrown.
-	 * 
 	 * <br>
-	 * A<sup>l x m</sup> X B<sup>m x n</sup> -> C<sup>l x n</sup><br>
+	 * <br>
+	 * A<sup>l x m</sup> X B<sup>m x n</sup> -&gt; C<sup>l x n</sup><br>
 	 * c<sub>ik</sub> = \[ \sum_{k=0}^m \] a<sub>ij</sub> * b<sub>jk</sub><br>
 	 * </p>
-	 * @param otherMatrix The matrix 'B' which should use for the matrix multiplication.  
-	 * @return The new resulting matrix instance. 
-	 * @throws IllegalMatrixComputation Will be thrown if a multiplication of both matrices isn't possible.
+	 * @param otherMatrix the matrix 'B' which should use for the matrix multiplication.  
+	 * @return the new resulting matrix instance. 
+	 * @throws IllegalMatrixComputationException if this count of columns is not equal to another matrix count of rows.
 	 */
-	public Matrix multiplyBy(Matrix otherMatrix) throws IllegalMatrixComputation;
+	public Matrix multiplyBy(Matrix otherMatrix) throws IllegalMatrixComputationException;
 	
 	/**
 	 * <p>
@@ -78,7 +78,7 @@ public interface Matrix extends Iterable<MatrixElement> {
 	 * M<sup>T</sup>  = (m<sub>ji</sub>)<br>
 	 * </p>
 	 * 
-	 * @return The resulting transposed matrix.
+	 * @return the resulting transposed matrix.
 	 */
 	public Matrix transposition();
 	
@@ -88,9 +88,9 @@ public interface Matrix extends Iterable<MatrixElement> {
 	 * Perform a bounds check to make sure the specified element is part of the matrix. 
 	 * </p>
 	 * 
-	 * @param row Matrix element's row index.
-	 * @param col Matrix element's column index.
-	 * @return The specified elements value.
+	 * @param row the matrix element's row index.
+	 * @param col the matrix element's column index.
+	 * @return the specified elements value.
 	 */
 	public double get(int row, int col);
 	
@@ -101,9 +101,9 @@ public interface Matrix extends Iterable<MatrixElement> {
 	 * Don't performs a bounds check to provide a faster element access; 
 	 * </p>
 	 * 
-	 * @param row Matrix element's row index.
-	 * @param col Matrix element's column index.
-	 * @return The specified elements value.
+	 * @param row the matrix element's row index.
+	 * @param col the matrix element's column index.
+	 * @return the specified elements value.
 	 */
 	public double get_unsafe(int row, int col);
 	
@@ -113,9 +113,9 @@ public interface Matrix extends Iterable<MatrixElement> {
 	 * Perform a bounds check to make sure the specified element is part of the matrix.
 	 * </p>
 	 * 
-	 * @param row Matrix element's row index. 
-	 * @param col Matrix element's column index.
-	 * @param value The element's new value.
+	 * @param row the matrix element's row index. 
+	 * @param col the matrix element's column index.
+	 * @param value the element's new value.
 	 */
 	public void set(int row, int col, double value);
 	
@@ -125,9 +125,9 @@ public interface Matrix extends Iterable<MatrixElement> {
 	 * Don't performs a bounds check to provide a faster element write access; 
 	 * </p>
 	 * 
-	 * @param row Matrix element's row index. 
-	 * @param col Matrix element's column index.
-	 * @param value The element's new value.
+	 * @param row the matrix element's row index. 
+	 * @param col the matrix element's column index.
+	 * @param value the element's new value.
 	 */
 	public void set_unsafe(int row, int col, double value);
 	
@@ -136,7 +136,7 @@ public interface Matrix extends Iterable<MatrixElement> {
 	 * Returns the number of rows in this matrix.
 	 * </p>
 	 * 
-	 * @return Number of rows.
+	 * @return the number of rows.
 	 */
 	public int getNumRows();
 	
@@ -144,16 +144,16 @@ public interface Matrix extends Iterable<MatrixElement> {
 	 * <p>
 	 * Returns the number of columns in this matrix
 	 * </p>
-	 * @return Number of columns.
+	 * @return the number of columns.
 	 */
 	public int getNumCols();
 	
 	/**
 	 * Checks if the specified matrix element is inside this matrix.
 	 * 
-	 * @param row Matrix element's row index.
-	 * @param col Matrix elements's col index.
-	 * @return Returns true if the specified element is inside this matrix.
+	 * @param row the matrix element's row index.
+	 * @param col the matrix elements's column index.
+	 * @return <code>true</code> if the specified element is inside this matrix.
 	 */
 	public boolean isInBounds(int row, int col);
 	
@@ -162,7 +162,7 @@ public interface Matrix extends Iterable<MatrixElement> {
 	 * Convert the matrix into a array representation.
 	 * </p>
 	 * 
-	 * @return The array representation. 
+	 * @return the array representation. 
 	 */
 	public double[][] toArray();
 	
@@ -171,7 +171,7 @@ public interface Matrix extends Iterable<MatrixElement> {
 	 * Create and returns a copy of this matrix.
 	 * </p>
 	 * 
-	 *  @return The copy instance of this matrix.
+	 *  @return the copy of this matrix instance.
 	 */
 	public Matrix copy();
 	
@@ -187,7 +187,7 @@ public interface Matrix extends Iterable<MatrixElement> {
 	 * Converts the array into a string format for display purposes.
 	 * </p>
 	 * 
-	 * @return String representation of the matrix.
+	 * @return the string representation of the matrix.
 	 */
 	@Override
 	public String toString();

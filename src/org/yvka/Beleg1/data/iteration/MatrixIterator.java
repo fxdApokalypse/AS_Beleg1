@@ -8,13 +8,13 @@ import org.yvka.Beleg1.data.Matrix;
 /**
  * <p>
  * This Iterator is designed to iterate over all elements <br> 
- * of a specified matrix.</br> 
- * </br>
+ * of a specified matrix.<br> 
+ * <br>
  * The iterator will iterate over each cell from left to right 
  * in each row (starting by the first row).   
  * </p>
  * @author Yves Kaufmann
- *
+ * @see Iterator {@link Iterator}
  */
 public class MatrixIterator implements Iterator<MatrixElement> {
 	
@@ -29,7 +29,7 @@ public class MatrixIterator implements Iterator<MatrixElement> {
 	 * <p>
 	 * The current element index as integer value,
 	 * row and column can obtain by using the following formulas.<br>
-	 * </br>
+	 * <br>
 	 * row = index / CountOfColumns <br>
 	 * col = index % CountOfColumns <br>
 	 * </p>
