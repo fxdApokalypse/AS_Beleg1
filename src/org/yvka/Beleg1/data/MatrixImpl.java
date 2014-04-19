@@ -200,17 +200,5 @@ public class MatrixImpl implements Matrix {
 			throw new IllegalArgumentException("The specified element is out of Bounds.");
 		}
 	}
-	
-	
-	@SuppressWarnings("javadoc")
-	public static void main(String[] args) {
-		Matrix m = new MatrixImpl(new double[][] {
-				{1,2,3}, 
-				{0,6,4},
-				{0,3,2}
-				
-		});
-		CommonOperations.determineRangOfMatrix(m);
-	
-	}
+
 }

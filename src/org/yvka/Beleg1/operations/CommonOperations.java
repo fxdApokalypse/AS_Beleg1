@@ -1,9 +1,10 @@
 package org.yvka.Beleg1.operations;
 
 import java.util.Arrays;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 import org.yvka.Beleg1.data.Matrix;
-import org.yvka.Beleg1.data.MatrixImpl;
 import org.yvka.Beleg1.data.iteration.MatrixElement;
 import org.yvka.Beleg1.utils.ArrayUtils;
 import org.yvka.Beleg1.utils.ArrayUtils.ArrayDimensions;
@@ -116,53 +117,64 @@ public class CommonOperations {
 			.max().getAsDouble();
 	} 
 	
+	private static class CountOfZeroRows implements Consumer<double []> {
+		private int zeroRows = 0;
+		@Override
+		public void accept(double[] matrixRow) {
+			if(Arrays.stream(matrixRow).sum() == 0) {
+				zeroRows++;
+			}
+		}
+	}
+	
 	/**
 	 * <p>
-	 * Determine the rang of a specified matrix by the 
+	 * Determine the rank of a specified matrix by the 
 	 * Gaussian elimination.
 	 * </p>
 	 * @param matrix The matrix on which this operation should work.
 	 * @return The rang of the specified matrix.
 	 */
-	public static int determineRangOfMatrix(Matrix matrix) {
+	public static int determineRankOfMatrix(Matrix matrix) {
+		int maxRank = Integer.min(matrix.getNumRows(), matrix.getNumRows());
+		CommonOperations.convertToRowEchelonForm(matrix);
+		
+		Stream<double[]> stream = Arrays.stream(matrix.toArray());  
+		CountOfZeroRows countOfZeroRows = new CountOfZeroRows();
+		stream.forEach(countOfZeroRows);
+		
+		return (int) (maxRank - countOfZeroRows.zeroRows);
+	}
+	
+	/**
+	 * Convert a specified matrix into the row echelon form which describe is the shape 
+	 * resulting of a Gaussian Elimination.
+	 *   
+	 * @param matrix the matrix on which this operation should work.
+	 * @return the specified matrix in row echelon form. 
+	 */
+	public static Matrix convertToRowEchelonForm(Matrix matrix) {
 		int rows = matrix.getNumRows(); 
 		int cols = matrix.getNumCols();
-		int maxRang = Integer.max(rows, cols);
-		double [][]_matrix = matrix.toArray();		
-		for(int k = 0; k < rows;k++) {
-			//Find pivot for column k:
-			int i_max = 0;
-			double max_value = Double.MIN_VALUE;
-			for(int h = k; h < rows; h++) {
-				double currValue = _matrix[h][k];
-				if( currValue > max_value ) {
-					i_max = h;
-					max_value = currValue;
-				}
+		double [][]_matrix = matrix.toArray();
+		
+		for(int piviotRow = 0; piviotRow < rows;piviotRow++) {
+			
+			if (_matrix[piviotRow][piviotRow] == 0.0) {
+				ArrayUtils.swapRows(_matrix, piviotRow, rows - 1);
 			}
-			//int i_max  = argmax (i = k ... m, Math.abs(_matrix[i][k]]));
-			if (_matrix[i_max][k] == 0) {
-				throw new RuntimeException("Matrix is singular!");
-			}
-			ArrayUtils.swapRows(_matrix, k, i_max);		
-			   		  
-			for(int i = k + 1; i < rows; i++) {
-			    for(int j = k; j < cols; j++) {
-			    	_matrix[i][j] = _matrix[i][j] - _matrix[k][j] * (_matrix[i][k] / _matrix[k][k]);
+			
+			for(int i = piviotRow + 1; i < rows; i++) {
+				double multipleOfPiviot = (_matrix[i][piviotRow] / _matrix[piviotRow][piviotRow]);
+			    for(int piviotCol = piviotRow; piviotCol < cols; piviotCol++) {
+			    	_matrix[i][piviotCol] = _matrix[i][piviotCol] - _matrix[piviotRow][piviotCol] * multipleOfPiviot;
 			    }
-			    // Fill lower triangular matrix with zeros:
-			    _matrix[i][k] = 0.0;
+			    _matrix[i][piviotRow] = 0.0;
 		    }
 		}
 		
+		CommonOperations.fillByArray(matrix, _matrix);
 		
-		MatrixIO.print(new MatrixImpl(_matrix));
-		
-		int rang = (int) (maxRang-Arrays.stream(_matrix)
-										.mapToDouble(x->Arrays.stream(x).sum())
-										.filter(x-> x == 0.0).count());
-		
-		System.out.println(rang);
-		return rang;
+		return matrix;
 	}
 }

@@ -20,7 +20,7 @@ public class MatrixIO {
 	 * Default display format for matrix elements which is described in
 	 * the {@link Formatter Format string syntax}.   
 	 */
-	public static final String DEFAULT_ELEMENT_FORMAT = "%4.2f";
+	public static final String DEFAULT_ELEMENT_FORMAT = "% 4.2f";
 	
 	
 	/**
