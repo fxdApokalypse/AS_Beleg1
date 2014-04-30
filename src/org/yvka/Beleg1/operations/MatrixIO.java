@@ -1,10 +1,18 @@
 package org.yvka.Beleg1.operations;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Formatter;
+import java.util.Scanner;
+import java.util.function.ToDoubleFunction;
 
 import org.yvka.Beleg1.data.Matrix;
+import org.yvka.Beleg1.data.MatrixImpl;
 
 /**
  * <p>
@@ -114,4 +122,63 @@ public class MatrixIO {
 			out.println();
 		}
 	}
+	
+	/**
+	 * <p>
+	 * Parse a matrix form the specified InputStream.<br>
+	 * <br>
+	 * The matrix is stored with the following syntax: <br>
+	 * <br>
+	 * <code>
+	 * 	1,2,3,
+	 *  7,8,9
+	 * </code>
+	 * </p>
+	 * @param in the <code>InputStream</code> from which the matrix should read.  
+	 * @return a matrix instance, if the operation was successful.
+	 * @throws InvalidMatrixFormatException if the stream is not in the required format.
+	 * 
+	 */
+	public static Matrix parse(InputStream in) throws InvalidMatrixFormatException {
+		ArrayList<double[]> matrix = new ArrayList<>();
+		String line = null;
+		
+		final NumberFormat format = NumberFormat.getInstance();
+		ToDoubleFunction<String> parseNumber = 
+			(String number) -> {
+				try {
+					return format.parse(number).doubleValue();
+				} catch(ParseException ex) {
+					throw new RuntimeException(ex.getMessage(), ex);
+				}
+		};
+		
+		try(Scanner reader = new Scanner(in)) {
+			while((line = reader.nextLine()) != null && !line.isEmpty()) {
+				
+				double []numbers  = Arrays.stream(line.split(" "))
+				.map(String::trim)
+				.mapToDouble(parseNumber).toArray();
+				
+				if(numbers.length <= 0) {
+					throw new InvalidMatrixFormatException("Invalid Format: Each row must have the same count of numbers.");
+				}
+				
+				if(matrix.size() > 0 && matrix.get(0).length != numbers.length) {
+					throw new InvalidMatrixFormatException("Invalid Format: Each row must have the same count of numbers.");
+				}
+				
+				matrix.add(numbers);		
+			}
+		} catch(NumberFormatException ex) {
+			throw new InvalidMatrixFormatException("Invalid Format: The specified matrix element ins't a number.", ex);
+		}
+		
+		if(matrix.size() == 0 || matrix.get(0).length == 0) {
+			throw new InvalidMatrixFormatException("Invalid Format: The matrix must at least one row and one column.");
+		}
+		
+		return new MatrixImpl(matrix.toArray(new double[0][0]));
+	}
+
 }
