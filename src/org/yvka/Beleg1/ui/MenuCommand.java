@@ -1,12 +1,10 @@
 package org.yvka.Beleg1.ui;
 
-import java.util.List;
-
-import org.yvka.Beleg1.ui.commands.HelpCommand;
+import org.yvka.Beleg1.ui.menues.HelpMenu;
 import org.yvka.Beleg1.utils.StringUtil;
 
 
-public abstract class ApplicationCommand implements Command {
+public abstract class MenuCommand extends ApplicationCommand {
 	
 	protected final class Param {
 		protected String name;
@@ -38,7 +36,7 @@ public abstract class ApplicationCommand implements Command {
 		
 		@Override
 		public String toString() {
-			return String.format("%s%-10s %s\n", HelpCommand.INDENT, getName(), getDesc());
+			return String.format("%s%-10s %s\n", HelpMenu.INDENT, getName(), getDesc());
 		}
 		
 		public String toStringOnlyName() {
@@ -51,17 +49,11 @@ public abstract class ApplicationCommand implements Command {
 		
 	}
 	
-	private Application application = null;
 	
-	public ApplicationCommand(Application app) {
-		this.application = app;
+	public MenuCommand(Application app) {
+		super(app);
 	}
 
-	protected Application getApplication() {
-		return application;
-	}
-	
-	
 	public abstract String getName();
 	public abstract String getDescription();
 	public abstract String getHelp();
@@ -81,7 +73,7 @@ public abstract class ApplicationCommand implements Command {
 			str.append("The " +  getName() + "commando has the following parameters:");
 			for(Param param : params) {
 				str.append(StringUtil.LINE_SEPERATOR);
-				str.append(String.format("%s%-10s %s\n", HelpCommand.INDENT, param.getName(), param.getDesc()));
+				str.append(String.format("%s%-10s %s\n", HelpMenu.INDENT, param.getName(), param.getDesc()));
 				
 			}
 		} else {
@@ -89,6 +81,5 @@ public abstract class ApplicationCommand implements Command {
 		}
 		return str.toString();
 	}
-	
 	
 }

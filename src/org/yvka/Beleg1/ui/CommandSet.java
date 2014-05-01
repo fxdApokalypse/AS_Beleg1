@@ -1,12 +1,8 @@
 package org.yvka.Beleg1.ui;
 
-import java.io.ObjectInputStream.GetField;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
-
-import org.yvka.Beleg1.ui.commands.NullCommand;
 
 public class CommandSet implements Command {
 	
@@ -21,7 +17,7 @@ public class CommandSet implements Command {
 		if(this.commandForUnknownCommands != null) {
 			return this.commandForUnknownCommands;
 		}
-		return NullCommand.getInstance();
+		return Command.NULL;
 	}
 	
 	public boolean has(String command) {

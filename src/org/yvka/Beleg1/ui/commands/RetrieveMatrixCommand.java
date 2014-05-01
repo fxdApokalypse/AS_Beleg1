@@ -1,0 +1,68 @@
+package org.yvka.Beleg1.ui.commands;
+
+import org.yvka.Beleg1.data.Matrix;
+import org.yvka.Beleg1.ui.Application;
+import org.yvka.Beleg1.ui.ApplicationCommand;
+import org.yvka.Beleg1.ui.Command;
+import org.yvka.Beleg1.ui.Context;
+import org.yvka.Beleg1.ui.MatrixTO;
+
+import Prog1Tools.IOTools;
+
+public class RetrieveMatrixCommand extends ApplicationCommand {
+
+	private MatrixTO matrixResult = null;
+	private String prompt = null;
+	
+	public RetrieveMatrixCommand(Application application,  String prompt) {
+		super(application);
+		this.prompt = prompt;
+	}
+	
+	public boolean hasMatrix() {
+		return matrixResult != null;
+	}
+	
+	public MatrixTO getMatrixTO() {
+		return matrixResult;
+	}
+	
+	@Override
+	public void execute(String... args) {
+		String name = null;
+		if(args.length > 0) {
+			name = args[0];
+		}
+		
+		name = retrieveMatrixName(name);
+		Matrix matrix = retrieveMatrix(name);
+		
+		if(matrix != null) {
+			matrixResult = new MatrixTO(matrix, name);
+		}
+	}
+	
+	private Matrix retrieveMatrix(String name) {
+
+		if(!getContext().hasMatrix(name)) {
+			System.out.printf("The specified matrix '%s' does not exists.\n", name);
+			String prompt = String.format("Do you want to create the matrix '%s' ? [yes,no] ", name);
+			String answer = IOTools.readString(prompt).trim();
+			if(!"yes".equalsIgnoreCase(answer)) {
+				return null; 
+			}
+			getMenuCommand("create").execute(name);
+		}
+		
+		return getContext().getMatrix(name);
+	}
+	
+	private String retrieveMatrixName(String name) {
+		if(name == null) {
+			return  IOTools.readString(prompt).trim();
+		} else {
+			return name;
+		}
+	}
+	
+}

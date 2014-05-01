@@ -1,46 +1,32 @@
-package org.yvka.Beleg1.ui.commands;
+package org.yvka.Beleg1.ui.menues;
 
 import org.yvka.Beleg1.data.Matrix;
 import org.yvka.Beleg1.operations.MatrixIO;
 import org.yvka.Beleg1.ui.Application;
-import org.yvka.Beleg1.ui.ApplicationCommand;
+import org.yvka.Beleg1.ui.MatrixTO;
+import org.yvka.Beleg1.ui.MenuCommand;
+import org.yvka.Beleg1.ui.commands.PrintMatrixCommand;
+import org.yvka.Beleg1.ui.commands.RetrieveMatrixCommand;
 import org.yvka.Beleg1.utils.StringUtil;
 
-import Prog1Tools.IOTools;
-
-public class PrintCommand extends ApplicationCommand {
-
-	public PrintCommand(Application app) {
-		super(app);
-	}
+public class PrintMatrixMenuCommand extends MenuCommand {
 	
-
+	private MatrixTO matrixTO = null;
+	
+	public PrintMatrixMenuCommand(Application app) {
+		super(app);
+		matrixTO = null;
+	}
+		
 	@Override
 	public void execute(String... args) {
-		String matrixName = null;
 		
+		RetrieveMatrixCommand cmd = new RetrieveMatrixCommand(getApplication(), "Which matrix should print out ? ");
+		cmd.execute(args);
 		
-		if(args.length <= 0) {
-			matrixName = IOTools.readString("Which matrix should print out ? " ).trim();
-		} else {
-			matrixName = args[0];
+		if(cmd.hasMatrix()) {
+			new PrintMatrixCommand(cmd.getMatrixTO()).execute();
 		}
-		
-		
-		if(!getApplication().getContext().hasMatrix(matrixName)) {
-			System.out.printf("The specified matrix '%s' does not exists.\n", matrixName);
-			String prompt = String.format("Do you want to create the matrix '%s' ? [yes,no] ", matrixName);
-			String answer = IOTools.readString(prompt).trim();
-			if(!"yes".equalsIgnoreCase(answer)) {
-				return;
-			}
-			getApplication().getCommands().get("create").execute(matrixName);
-		}
-		
-		Matrix matrix = getApplication().getContext().getMatrix(matrixName);		
-		String matrixString = MatrixIO.toString(matrix);
-		matrixString = StringUtil.wrapTopBottomBorders(matrixString, matrixName);
-		System.out.println(matrixString);
 	}
 
 	@Override

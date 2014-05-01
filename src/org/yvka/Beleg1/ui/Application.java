@@ -14,13 +14,13 @@ public class Application {
 	
 	private Context ctx = null;
 	private State state = null;
-	private MatrixCommandSet commands = null;
+	private MatrixMenuSet menues = null;
 	
 	
 	public Application() {
 		ctx = new  Context();
 		state = State.Stopped;
-		commands = new MatrixCommandSet(this);		
+		menues = new MatrixMenuSet(this);		
 	}
 	
 	public void start(String[] arguments) {
@@ -30,7 +30,7 @@ public class Application {
 		state = State.Running;
 		
 		if(arguments.length > 0) {
-			commands.execute(arguments);
+			menues.execute(arguments);
 		} else {
 			readArgumentsFromConsole();
 		}
@@ -45,7 +45,7 @@ public class Application {
 	}
 
 	private void readArgumentsFromConsole() {
-		commands.execute("help"); 
+		menues.execute("help"); 
 		try(Scanner sc =  new Scanner(System.in)) {
 			while( state == State.Running ) {
 				System.out.print(COMMAND_PROMPT);
@@ -53,7 +53,7 @@ public class Application {
 				
 				if(line == null) break;
 				String[] arguments = line.split(" ");			
-				commands.execute(arguments);
+				menues.execute(arguments);
 			}
 		}
 	}
@@ -61,8 +61,7 @@ public class Application {
 	public Context getContext() {
 		return this.ctx;
 	}
-	
-	public MatrixCommandSet getCommands() {
-		return this.commands;
+	public MatrixMenuSet getMenuSet() {
+		return this.menues;
 	} 
 }

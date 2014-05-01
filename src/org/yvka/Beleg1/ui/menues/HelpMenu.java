@@ -1,20 +1,20 @@
-package org.yvka.Beleg1.ui.commands;
+package org.yvka.Beleg1.ui.menues;
 
 import static java.lang.System.out;
 
 import java.util.List;
 
 import org.yvka.Beleg1.ui.Application;
-import org.yvka.Beleg1.ui.ApplicationCommand;
 import org.yvka.Beleg1.ui.Command;
-import org.yvka.Beleg1.ui.MatrixCommandSet;
+import org.yvka.Beleg1.ui.MatrixMenuSet;
+import org.yvka.Beleg1.ui.MenuCommand;
 import org.yvka.Beleg1.utils.StringUtil;
 
-public class HelpCommand extends ApplicationCommand {
+public class HelpMenu extends MenuCommand {
 	
 	public static final String INDENT = "   ";
 	
-	public HelpCommand(Application app) {
+	public HelpMenu(Application app) {
 		super(app);
 	}
 	
@@ -23,30 +23,29 @@ public class HelpCommand extends ApplicationCommand {
 		if(args.length <= 0 ) {
 			printMainHelp();
 		} else {
-			MatrixCommandSet commands = getApplication().getCommands();
+			//MenuCommand cmd = getMenuCommand(args[0]);
+			MatrixMenuSet commands = getApplication().getMenuSet();
 			Command command = commands.get(args[0]);
-			if(command instanceof ApplicationCommand) {
-				out.println(((ApplicationCommand) command).getHelp());
+			if(command instanceof MenuCommand) {
+				out.println(((MenuCommand) command).getHelp());
 			}
 		}
 	}
 
 	private void printMainHelp() {
 		
-		List<ApplicationCommand> applicationCommands = getApplication().getCommands().getAvailableApplicationCommands();
+		List<MenuCommand> applicationCommands = getApplication().getMenuSet().getAvailableApplicationCommands();
 		applicationCommands.sort((x1, x2) -> x1.getName().compareTo(x2.getName()));
 		out.println("Usage: matrix <cmd> [<arguments>]");
 		out.println();
 		out.println("The most commonly used matrix commands are:");
 		
-		for(ApplicationCommand cmd : applicationCommands) {
+		for(MenuCommand cmd : applicationCommands) {
 			out.printf("%s%-10s %s\n", INDENT, cmd.getName(), cmd.getDescription());
 		}
 		out.println();
 	}
 	
-	
-
 	@Override
 	public String getName() {
 		return "help";

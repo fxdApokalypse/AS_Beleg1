@@ -1,15 +1,15 @@
-package org.yvka.Beleg1.ui.commands;
+package org.yvka.Beleg1.ui.menues;
 
 import java.util.List;
 
 import org.yvka.Beleg1.ui.Application;
-import org.yvka.Beleg1.ui.ApplicationCommand;
+import org.yvka.Beleg1.ui.MenuCommand;
 
 import static java.lang.System.out;
 
-public class ListCommand extends ApplicationCommand {
+public class ListMatricesMenu extends MenuCommand {
 
-	public ListCommand(Application app) {
+	public ListMatricesMenu(Application app) {
 		super(app);
 	}
 
@@ -18,10 +18,10 @@ public class ListCommand extends ApplicationCommand {
 		List<String> names = getApplication().getContext().getMatrixNames();
 		
 		if(names.size() > 0) {
-			System.out.println("List of created matrices: ");
+			out.println("List of created matrices: ");
 			names.forEach(out::println);
 		} else {
-			System.out.println("There are no created matrices.");
+			out.println("There are no created matrices.");
 		}
 	}
 

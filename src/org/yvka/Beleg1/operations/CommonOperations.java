@@ -133,11 +133,11 @@ public class CommonOperations {
 	 * Gaussian elimination.
 	 * </p>
 	 * @param matrix The matrix on which this operation should work.
-	 * @return The rang of the specified matrix.
+	 * @return The rank of the specified matrix.
 	 */
 	public static int determineRankOfMatrix(Matrix matrix) {
 		int maxRank = Integer.min(matrix.getNumRows(), matrix.getNumRows());
-		CommonOperations.convertToRowEchelonForm(matrix);
+		matrix = CommonOperations.convertToRowEchelonForm(matrix.copy());
 		
 		Stream<double[]> stream = Arrays.stream(matrix.toArray());  
 		CountOfZeroRows countOfZeroRows = new CountOfZeroRows();

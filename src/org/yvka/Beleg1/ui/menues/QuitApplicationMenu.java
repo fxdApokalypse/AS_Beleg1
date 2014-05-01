@@ -1,14 +1,14 @@
-package org.yvka.Beleg1.ui.commands;
+package org.yvka.Beleg1.ui.menues;
 
 import org.yvka.Beleg1.ui.Application;
-import org.yvka.Beleg1.ui.ApplicationCommand;
 import org.yvka.Beleg1.ui.Command;
+import org.yvka.Beleg1.ui.MenuCommand;
 
 /**
  */
-public class QuitCommand extends ApplicationCommand {
+public class QuitApplicationMenu extends MenuCommand {
 
-	public QuitCommand(Application app) {
+	public QuitApplicationMenu(Application app) {
 		super(app);
 	}
 	
