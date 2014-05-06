@@ -84,20 +84,6 @@ public class Parser {
 	  }
   }
   
-  public class AddExpression implements Expression {
-	 private Expression a = null;
-	 private Expression b = null;
-	 
-	 public AddExpression( Expression a,  Expression b) {
-		this.a = a;
-		this.b = b;
-	 }
-	 
-	 public void interpret(Object context) {
-		expr.interpret(context);
-	 }
-  }
-  
   /** Main entry point. */
   public static void main(String args[]) throws ParseException {
     

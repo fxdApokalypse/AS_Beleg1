@@ -4,13 +4,12 @@
 		Just a simple build file which is used to generate 
 		and test the 'MyParser'.
 	</description>
-	
+	<property environment="env"/>
 	<property name="targetParser" location="Parser"/>
 	<property name="gramarFile" location="${targetParser}.jj"/>
-	<property name="javaccHome" location="../"/>
+	<property name="javaccHome" location="${env.JAVACC_HOME}"/>
 	<property name="src" location="srcParser/" />
-	<property name="bin" location="binParser/" />
-	
+	<property name="bin" location="binParser/" />	
 	<target name="default" depends="clean,generate,compile,run" />
 	
 	<target name="clean">
