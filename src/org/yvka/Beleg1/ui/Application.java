@@ -2,8 +2,6 @@ package org.yvka.Beleg1.ui;
 
 import java.util.Scanner;
 
-import Prog1Tools.IOTools;
-
 public class Application {
 	
 	private enum State {

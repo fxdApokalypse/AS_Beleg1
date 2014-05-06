@@ -20,7 +20,7 @@ public class PrintMatrixCommand implements Command {
 	@Override
 	public void execute(String... args) {
 		String matrixString = MatrixIO.toString(matrixTO.getMatrix());
-		matrixString = StringUtil.wrapHorizontalBorders(matrixString, matrixTO.getName());
+		matrixString = StringUtil.wrapWithVerticalBorders(matrixString, matrixTO.getName());
 		System.out.println(matrixString);
 	}
 }

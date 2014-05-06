@@ -3,11 +3,9 @@ package org.yvka.Beleg1.ui.commands;
 import org.yvka.Beleg1.data.Matrix;
 import org.yvka.Beleg1.ui.Application;
 import org.yvka.Beleg1.ui.ApplicationCommand;
-import org.yvka.Beleg1.ui.Command;
-import org.yvka.Beleg1.ui.Context;
+import org.yvka.Beleg1.ui.IOTools;
 import org.yvka.Beleg1.ui.MatrixTO;
 
-import Prog1Tools.IOTools;
 
 public class RetrieveMatrixCommand extends ApplicationCommand {
 

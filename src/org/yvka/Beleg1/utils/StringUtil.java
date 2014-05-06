@@ -1,16 +1,38 @@
 package org.yvka.Beleg1.utils;
 
-import java.util.StringJoiner;
-import java.util.regex.Pattern;
-
+/**
+ * <p>
+ * The StringUtil provides methods for common string operation.
+ * <br>
+ * 
+ * </p>
+ * @author Yves Kaufmann
+ * @see String
+ */
 public class StringUtil {
-	
+   
+   /**
+    * The line separator constant which is used to create system independent strings.
+    */
    public static final String LINE_SEPERATOR = System.lineSeparator();
 	
-   public static String wrapHorizontalBorders(String content, String title) {
+   /**
+    * <p>
+    * Wraps a specified string with vertical lines and prepends a specified title.<br> 
+    * <br>
+    * <code>
+    * For instance the string "1 2 3  will be converted to "| 1 2 3 |.
+    *  				           4 5 6" 						| 4 5 6 |
+    * </code>
+    * </p>
+    * @param content the specified string
+    * @param title
+    * @return the 'content' which is wrapped with vertical lines. 
+    */
+   public static String wrapWithVerticalBorders(String content, String title) {
 	   StringBuilder str = new StringBuilder();
 	   String label =  title + " = ";
-	   String indent = createLine(label.length(), ' ');
+	   String indent = repeatString(" ", label.length());
 	   String[] lines = content.split(LINE_SEPERATOR);
 	   
 	   for(int i = 0; i < lines.length; i++) {
@@ -20,39 +42,35 @@ public class StringUtil {
 	 
 	  return  str.toString();
    }
-   
-	
-   public static String wrapTopBottomBorders(String content, String title) {
-		
-		int indexOfFirstLineSpearator = content.indexOf(LINE_SEPERATOR);
-		int sizeOfFirstLine = indexOfFirstLineSpearator >= 0 ? indexOfFirstLineSpearator + 1 : content.length();
-		
-		if(sizeOfFirstLine < (title.length() + 4)) {
-			sizeOfFirstLine = title.length() + 4 + 10;
-		}
-		
-		StringBuilder str = new StringBuilder();
-		str.append(createLine(title.length() + 4, '_'));
-		str.append(LINE_SEPERATOR);
-		str.append("| " + title + " |");
-		str.append(LINE_SEPERATOR);
-		str.append(createLine(sizeOfFirstLine));
-		str.append(LINE_SEPERATOR);
-		str.append(content);
-		str.append(createLine(sizeOfFirstLine));
-		return str.toString();
-	}
-	
+     
+	/**
+	 * <p>
+	 * Generates a horizontal string line with a specified length. <br>
+	 * 
+	 * </p>
+	 * @param length the length of the desired string line.
+	 * @return the generated line.
+	 */
 	public static String createLine(int length) {
-		return createLine(length, '-');
+		return repeatString( "-", length);
 	}
 	
-	public static String createLine(int length, char lineElement) {
-		if(length <= 0) {
-			throw new IllegalArgumentException("Invalid length: length must be > 0");
+	/**
+	 * <p>
+	 * Repeat a String <code>str</code> times to create a new string.<br>
+	 * 
+	 * </p>
+	 * @param str the String to repeat.
+	 * @param times the number of times to repeat str.
+	 * @return the new string which contains <code>str</code> repeated.
+	 * @throws IllegalArgumentException if times <= 0
+	 */
+	public static String repeatString(String str, int times ) {
+		if(times <= 0) {
+			throw new IllegalArgumentException("Invalid times: times must be > 0");
 		}
-		StringBuilder str = new StringBuilder();
-		while(--length >= 0) str.append(lineElement);
-		return str.toString();
+		StringBuilder strBuilder = new StringBuilder();
+		while(--times >= 0) strBuilder.append(str);
+		return strBuilder.toString();
 	}
 }
