@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<project name="MyParser" default="default" basedir=".">
+	<description>
+		Just a simple build file which is used to generate 
+		and test the 'MyParser'.
+	</description>
+	
+	<property name="targetParser" location="Parser"/>
+	<property name="gramarFile" location="${targetParser}.jj"/>
+	<property name="javaccHome" location="../"/>
+	<property name="src" location="srcParser/" />
+	<property name="bin" location="binParser/" />
+	
+	<target name="default" depends="clean,generate,compile,run" />
+	
+	<target name="clean">
+		<delete dir="${src}"/>
+		<delete dir="${bin}"/>
+	</target>
+	
+	<target name="generate">
+		<mkdir dir="${src}"/>
+		<javacc target="${gramarFile}" outputdirectory="${src}" javacchome="${javaccHome}"/>
+	</target>
+	
+	<target name="compile" depends="generate">
+		<mkdir dir="${bin}"/>
+		<javac srcdir="${src}" destdir="${bin}" includeAntRuntime="false"/>
+	</target>
+	
+	<target name="run" depends="compile">
+		<java classname="Parser">
+			<classpath>
+				<pathelement location="${bin}"/>
+				<pathelement path="${java.class.path}"/>
+			</classpath>
+		</java>
+	</target>
+	
+</project>
