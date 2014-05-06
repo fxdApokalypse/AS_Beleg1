@@ -66,6 +66,17 @@ public class Context {
 		}
 	}
 	
+	public void removeMatrix(String name) {
+		if(hasMatrix(name)) {
+			matrices.remove(name);
+		}
+	}
+	
+	public void removeNumber(String name) {
+		if(hasMatrix(name)) {
+			numbers.remove(name);
+		}
+	}
 	
 	
 	

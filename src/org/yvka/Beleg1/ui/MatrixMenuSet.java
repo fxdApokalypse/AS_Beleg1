@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.yvka.Beleg1.ui.menues.CreateMatrixMenu;
+import org.yvka.Beleg1.ui.menues.DeleteMatrixMenu;
 import org.yvka.Beleg1.ui.menues.HelpMenu;
 import org.yvka.Beleg1.ui.menues.ListMatricesMenu;
 import org.yvka.Beleg1.ui.menues.MatrixAdditionMenu;
 import org.yvka.Beleg1.ui.menues.MatrixMultiplicationMenu;
+import org.yvka.Beleg1.ui.menues.MatrixScalarMultiplicationMenu;
+import org.yvka.Beleg1.ui.menues.MaxRowSumMenu;
 import org.yvka.Beleg1.ui.menues.QuitApplicationMenu;
 import org.yvka.Beleg1.ui.menues.MarixRankMenu;
 import org.yvka.Beleg1.ui.menues.PrintMatrixMenuCommand;
@@ -27,9 +30,9 @@ public class MatrixMenuSet extends CommandSet {
 		add(new MarixRankMenu(application));	
 		add(new HelpMenu(application));
 		add(new QuitApplicationMenu(application));
-		// TODO: maxSum
-		// TODO: delete
-		// TODO: add scalar
+		add(new MaxRowSumMenu(application));
+		add(new DeleteMatrixMenu(application));
+		add(new MatrixScalarMultiplicationMenu(application));
 	}
 	
 

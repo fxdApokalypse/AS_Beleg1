@@ -1,10 +1,28 @@
 package org.yvka.Beleg1.utils;
 
+import java.util.StringJoiner;
+import java.util.regex.Pattern;
+
 public class StringUtil {
 	
-	public static final String LINE_SEPERATOR = System.lineSeparator();
+   public static final String LINE_SEPERATOR = System.lineSeparator();
 	
-	public static String wrapTopBottomBorders(String content, String title) {
+   public static String wrapHorizontalBorders(String content, String title) {
+	   StringBuilder str = new StringBuilder();
+	   String label =  title + " = ";
+	   String indent = createLine(label.length(), ' ');
+	   String[] lines = content.split(LINE_SEPERATOR);
+	   
+	   for(int i = 0; i < lines.length; i++) {
+		   lines[i] = (i == 0 ? label : indent) + "|" + lines[i] + "|";
+		   str.append(lines[i]).append(LINE_SEPERATOR);
+	   }
+	 
+	  return  str.toString();
+   }
+   
+	
+   public static String wrapTopBottomBorders(String content, String title) {
 		
 		int indexOfFirstLineSpearator = content.indexOf(LINE_SEPERATOR);
 		int sizeOfFirstLine = indexOfFirstLineSpearator >= 0 ? indexOfFirstLineSpearator + 1 : content.length();

@@ -2,10 +2,7 @@ package org.yvka.Beleg1.ui.menues;
 
 import org.yvka.Beleg1.data.Matrix;
 import org.yvka.Beleg1.data.MatrixImpl;
-import org.yvka.Beleg1.operations.InvalidMatrixFormatException;
-import org.yvka.Beleg1.operations.MatrixIO;
 import org.yvka.Beleg1.ui.Application;
-import org.yvka.Beleg1.ui.MatrixTO;
 import org.yvka.Beleg1.ui.MenuCommand;
 
 import Prog1Tools.IOTools;
@@ -19,7 +16,15 @@ public class CreateMatrixMenu extends MenuCommand {
 	@Override
 	public void execute(String... args) {
 		String name = retrieveMatrixName(args);
-		Matrix matrix = new MatrixImpl(new double[][] {{1,2}, {1,2}}); // MatrixIO.parse(System.in);
+		Matrix matrix = null;
+		
+//		try {
+//			matrix = MatrixIO.parse(System.in);
+//		} catch (InvalidMatrixFormatException e) {
+//			e.printStackTrace();
+//		} finally {}
+//		
+		matrix = new MatrixImpl(new double[][] {{1,2}, {4,2}, {6,1}}); 
 		if(matrix != null) {
 			getApplication().getContext().putMatrix(name, matrix);
 		}

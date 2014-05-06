@@ -13,10 +13,14 @@ public class RetrieveMatrixCommand extends ApplicationCommand {
 
 	private MatrixTO matrixResult = null;
 	private String prompt = null;
+	private boolean shouldAskForNewMatrix = true;
 	
+	
+
 	public RetrieveMatrixCommand(Application application,  String prompt) {
 		super(application);
 		this.prompt = prompt;
+		shouldAskForNewMatrix = true;
 	}
 	
 	public boolean hasMatrix() {
@@ -27,6 +31,10 @@ public class RetrieveMatrixCommand extends ApplicationCommand {
 		return matrixResult;
 	}
 	
+	public void disableAskForNewMatrix() {
+		this.shouldAskForNewMatrix = false;
+	}
+
 	@Override
 	public void execute(String... args) {
 		String name = null;
@@ -46,6 +54,7 @@ public class RetrieveMatrixCommand extends ApplicationCommand {
 
 		if(!getContext().hasMatrix(name)) {
 			System.out.printf("The specified matrix '%s' does not exists.\n", name);
+			if(!shouldAskForNewMatrix) return null;
 			String prompt = String.format("Do you want to create the matrix '%s' ? [yes,no] ", name);
 			String answer = IOTools.readString(prompt).trim();
 			if(!"yes".equalsIgnoreCase(answer)) {
