@@ -1,6 +1,6 @@
 package org.yvka.Beleg1.ui.menues;
 
-import org.yvka.Beleg1.operations.CommonOperations;
+import org.yvka.Beleg1.operations.CommonMatrixOperations;
 import org.yvka.Beleg1.ui.Application;
 import org.yvka.Beleg1.ui.MatrixTO;
 import org.yvka.Beleg1.ui.MenuCommand;
@@ -20,7 +20,7 @@ public class MarixRankMenu extends MenuCommand {
 		
 		if(cmd.hasMatrix()) {
 			MatrixTO matrix = cmd.getMatrixTO();
-			int rank = CommonOperations.determineRankOfMatrix(matrix.getMatrix());
+			int rank = CommonMatrixOperations.determineRankOfMatrix(matrix.getMatrix());
 			System.out.printf("The rank of the matrix '%s' is %d", matrix.getName(), rank);
 			System.out.println();
 		} 

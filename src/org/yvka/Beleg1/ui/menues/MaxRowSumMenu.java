@@ -1,6 +1,6 @@
 package org.yvka.Beleg1.ui.menues;
 
-import org.yvka.Beleg1.operations.CommonOperations;
+import org.yvka.Beleg1.operations.CommonMatrixOperations;
 import org.yvka.Beleg1.ui.Application;
 import org.yvka.Beleg1.ui.MatrixTO;
 import org.yvka.Beleg1.ui.MenuCommand;
@@ -22,7 +22,7 @@ public class MaxRowSumMenu extends MenuCommand {
 		
 		if(retrieveMatrixCmd.hasMatrix()) {
 			MatrixTO matrix = retrieveMatrixCmd.getMatrixTO();
-			double maxRowSum = CommonOperations.determineMaxRowSum(matrix.getMatrix());
+			double maxRowSum = CommonMatrixOperations.determineMaxRowSum(matrix.getMatrix());
 			System.out.printf("The most valued row sum of the matrix '%s' is %.2f.%s", matrix.getName(), maxRowSum, StringUtil.LINE_SEPERATOR );
 		}
 		

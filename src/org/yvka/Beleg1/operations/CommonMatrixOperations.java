@@ -4,25 +4,136 @@ import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
+import org.yvka.Beleg1.data.IllegalMatrixComputationException;
 import org.yvka.Beleg1.data.Matrix;
+import org.yvka.Beleg1.data.MatrixFactory;
 import org.yvka.Beleg1.data.iteration.MatrixElement;
 import org.yvka.Beleg1.utils.ArrayUtils;
 import org.yvka.Beleg1.utils.ArrayUtils.ArrayDimensions;
 
 /**
- * List of common used matrix operations.
- * 
+ * <p>
+ * List of common used matrix operations. <br>
+ * <br>
+ * It is recommend to implement new matrix operations<br>
+ * as static methods which are implemented against the matrix interface.<br>
+ * This ensures that operation are useable by all Matrix implementations.
+ * <br>
+ *
  * @author Yves Kaufmann
  *
  */
-public class CommonOperations {
+public class CommonMatrixOperations {
 	
 	/**
 	 * Disables the default constructor because this class is for static usage only.
 	 */
-	protected CommonOperations() {
+	protected CommonMatrixOperations() {
 		throw new UnsupportedOperationException();
 	}
+	
+	/**
+	 * <p>
+	 * Performs a matrix addition by the following formula and 
+	 * returns the instance of the resulting matrix.<br> 
+	 * <br>
+	 * A + B := (a<sub>ij</sub> + b<sub>ij</sub>)<sub>i=1,...,m; j=1,...,n</sub><br>
+	 * </p>
+	 * 
+	 * @param leftMatrix the matrix 'A'.
+	 * @param rightMatrix the matrix 'B'.
+	 * @return the resulting matrix.
+	 * @throws IllegalMatrixComputationException if the dimension of both matrices are not equal.
+	 */
+	public static Matrix add(Matrix leftMatrix, Matrix rightMatrix) throws IllegalMatrixComputationException {
+		
+		if(leftMatrix.getNumCols() != rightMatrix.getNumCols() || leftMatrix.getNumRows() != rightMatrix.getNumRows()) {
+			throw new IllegalMatrixComputationException("The addition of matrices with different dimensions is not possible.");
+		}
+		
+		for(MatrixElement el : rightMatrix) {
+			leftMatrix.addScalar(el.row, el.col, el.value);
+		}
+		
+		return leftMatrix;
+	}
+	
+	
+	/**
+	 * <p>
+	 * Performs a matrix scalar multiplication  by the following formula 
+	 * and returns the instance of the resulting matrix.<br>
+	 * <br>
+	 * &lambda; * A := (&lambda; * a<sub>ij</sub>)<sub>i=1,...,m j=1,...,n</sub>
+	 * </p>
+	 * 
+	 * @param matrix the matrix 'A' which should use for the scalar multiplication.
+	 * @param scalarValue the scalar value which should use for the scalar multiplication.
+	 * @return the instance of the resulting matrix.
+	 */
+	public static Matrix multiplyBy(Matrix matrix ,double scalarValue) {
+		for(MatrixElement el : matrix) {
+			matrix.set_unsafe(el.row, el.col, el.value * scalarValue);
+		}
+		return matrix;
+	}
+	
+	/**
+	 * <p>
+	 * Performs a matrices multiplication by the following formula
+	 * and returns the resulting matrix instance. <br> 
+	 * Checks if the multiplication of both matrices is possible
+	 * otherwise a IllegalMatrixComputation Exception will be thrown.
+	 * <br>
+	 * <br>
+	 * A<sup>l x m</sup> X B<sup>m x n</sup> -&gt; C<sup>l x n</sup><br>
+	 * c<sub>ik</sub> = \[ \sum_{k=0}^m \] a<sub>ij</sub> * b<sub>jk</sub><br>
+	 * </p>
+	 * @param leftMatrix the matrix 'A' which should use for the matrix multiplication.
+	 * @param rightMatrix the matrix 'B' which should use for the matrix multiplication.  
+	 * @return the new resulting matrix instance. 
+	 * @throws IllegalMatrixComputationException if this count of columns is not equal to another matrix count of rows.
+	 */
+	public static Matrix multiplyBy(Matrix leftMatrix, Matrix rightMatrix) throws IllegalMatrixComputationException {
+		Matrix matrix = null;
+		if(leftMatrix.getNumCols() != rightMatrix.getNumRows()) {
+			throw new IllegalMatrixComputationException(
+				"The multiplication isn't possible if the number of rows from the left matrix is different to the numbers of columns of the right matrix."
+			);
+		}
+		matrix = MatrixFactory.get().createMatrix(leftMatrix.getNumRows(), rightMatrix.getNumCols());
+		for(int l = 0; l < leftMatrix.getNumRows(); l++) {
+			for(int n = 0; n < rightMatrix.getNumCols(); n++) {
+				double sum = 0.0;
+				for(int m = 0; m < leftMatrix.getNumCols(); m++) {
+					sum+= leftMatrix.get_unsafe(l, m) * rightMatrix.get_unsafe(m,n);
+				}
+				matrix.set(l, n, sum);
+			}
+		}
+		
+		return matrix;
+	}
+	
+	/**
+	 * <p>
+	 * Transpose the specified matrix 'matrix' by the following formula and returns the resulting matrix.<br>
+	 * <br>
+	 * M<sup>T</sup>  = (m<sub>ji</sub>)<br>
+	 * </p>
+	 * @param matrix the matrix 'M' which should be transposed.
+	 * @return the resulting transposed matrix.
+	 */
+	public static Matrix transposition(Matrix matrix) {
+		Matrix transpositionMatrix = MatrixFactory.get()
+				.createMatrix(matrix.getNumCols(), matrix.getNumRows());
+		
+		for(MatrixElement el: matrix) {
+			transpositionMatrix.set_unsafe(el.col, el.row, el.value);
+		}
+		return transpositionMatrix;
+	}
+
 	
 	/**
 	 * <p>
@@ -137,7 +248,7 @@ public class CommonOperations {
 	 */
 	public static int determineRankOfMatrix(Matrix matrix) {
 		int maxRank = Integer.min(matrix.getNumRows(), matrix.getNumRows());
-		matrix = CommonOperations.convertToRowEchelonForm(matrix.copy());
+		matrix = CommonMatrixOperations.convertToRowEchelonForm(matrix.copy());
 		
 		Stream<double[]> stream = Arrays.stream(matrix.toArray());  
 		CountOfZeroRows countOfZeroRows = new CountOfZeroRows();
@@ -173,7 +284,7 @@ public class CommonOperations {
 		    }
 		}
 		
-		CommonOperations.fillByArray(matrix, _matrix);
+		CommonMatrixOperations.fillByArray(matrix, _matrix);
 		
 		return matrix;
 	}

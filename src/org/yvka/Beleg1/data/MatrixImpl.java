@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import org.yvka.Beleg1.data.iteration.MatrixElement;
 import org.yvka.Beleg1.data.iteration.MatrixIterator;
-import org.yvka.Beleg1.operations.CommonOperations;
+import org.yvka.Beleg1.operations.CommonMatrixOperations;
 import org.yvka.Beleg1.operations.MatrixIO;
 
 
@@ -39,7 +39,7 @@ public class MatrixImpl implements Matrix {
 		m_Matrix = new double[rows][cols];
 		m_NumOfRows = rows;
 		m_NumOfCols = cols;
-		CommonOperations.zero(this);
+		CommonMatrixOperations.zero(this);
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class MatrixImpl implements Matrix {
 	 */
 	public MatrixImpl(double data[][]) {
 		this(data.length, data.length < 1 ? 0 : data[0].length);
-		CommonOperations.fillByArray(this, data);	
+		CommonMatrixOperations.fillByArray(this, data);	
 	}
 	
 	/**
@@ -74,56 +74,22 @@ public class MatrixImpl implements Matrix {
 
 	@Override
 	public Matrix add(Matrix otherMatrix) throws IllegalMatrixComputationException {
-		
-		if(getNumCols() != otherMatrix.getNumCols() || getNumRows() != otherMatrix.getNumRows()) {
-			throw new IllegalMatrixComputationException("The addition of matrices with different dimensions is not possible.");
-		}
-		
-		for(MatrixElement el : otherMatrix) {
-			addScalar(el.row, el.col, el.value);
-		}
-		
-		return this;
+		return CommonMatrixOperations.add(this, otherMatrix);
 	}
 
 	@Override
 	public Matrix multiplyBy(double scalarValue) {
-		for(MatrixElement el : this) {
-			set_unsafe(el.row, el.col, el.value * scalarValue);
-		}
-		return this;
+		return CommonMatrixOperations.multiplyBy(this, scalarValue);
 	}
 
 	@Override
 	public Matrix multiplyBy(Matrix otherMatrix) throws IllegalMatrixComputationException {
-		
-		if(getNumCols() != otherMatrix.getNumRows()) {
-			throw new IllegalMatrixComputationException(
-				"The multiplication isn't possible if the number of rows from the left matrix is different to the numbers of columns of the right matrix."
-			);
-		}
-		
-		Matrix matrix = new MatrixImpl(getNumRows(), otherMatrix.getNumCols());
-		for(int l = 0; l < getNumRows(); l++) {
-			for(int n = 0; n <otherMatrix.getNumCols(); n++) {
-				double sum = 0.0;
-				for(int m = 0; m < getNumCols(); m++) {
-					sum+= get_unsafe(l, m) * otherMatrix.get_unsafe(m,n);
-				}
-				matrix.set(l, n, sum);
-			}
-		}
-		
-		return matrix;
+		return CommonMatrixOperations.multiplyBy(this, otherMatrix);
 	}
 
 	@Override
 	public Matrix transposition() {
-		MatrixImpl transpositionMatrix = new MatrixImpl(getNumCols(), getNumRows());
-		for(MatrixElement el: this) {
-			transpositionMatrix.set_unsafe(el.col, el.row, el.value);
-		}
-		return transpositionMatrix;
+		return CommonMatrixOperations.transposition(this);
 	}
 
 	@Override
