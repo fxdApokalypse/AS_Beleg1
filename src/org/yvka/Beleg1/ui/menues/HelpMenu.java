@@ -23,7 +23,6 @@ public class HelpMenu extends MenuCommand {
 		if(args.length <= 0 ) {
 			printMainHelp();
 		} else {
-			//MenuCommand cmd = getMenuCommand(args[0]);
 			MatrixMenuSet commands = getApplication().getMenuSet();
 			Command command = commands.get(args[0]);
 			if(command instanceof MenuCommand) {
@@ -33,14 +32,12 @@ public class HelpMenu extends MenuCommand {
 	}
 
 	private void printMainHelp() {
-		
-		List<MenuCommand> applicationCommands = getApplication().getMenuSet().getAvailableApplicationCommands();
-		applicationCommands.sort((x1, x2) -> x1.getName().compareTo(x2.getName()));
+		MatrixMenuSet menuSet =  getApplication().getMenuSet();
 		out.println("Usage: matrix <cmd> [<arguments>]");
 		out.println();
 		out.println("The most commonly used matrix commands are:");
 		
-		for(MenuCommand cmd : applicationCommands) {
+		for(MenuCommand cmd : menuSet.getAllMenuCommands()) {
 			out.printf("%s%-10s %s\n", INDENT, cmd.getName(), cmd.getDescription());
 		}
 		out.println();

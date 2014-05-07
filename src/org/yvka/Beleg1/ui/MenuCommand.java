@@ -3,19 +3,50 @@ package org.yvka.Beleg1.ui;
 import org.yvka.Beleg1.ui.menues.HelpMenu;
 import org.yvka.Beleg1.utils.StringUtil;
 
-
+/**
+ * <p>
+ * A MenuCommand is a command in the command line user interface.<br>
+ * <br>
+ * Each command has a name which helps the user to identify a command by his name. <br>
+ * Each command has a description which describes his task to the user. <br>
+ * Each command has a help text which delivered more detailed information to the user.br>
+ *  </p>
+ * 
+ * @author Yves Kaufmann
+ *
+ */
 public abstract class MenuCommand extends ApplicationCommand {
-	
+	/**
+	 * Describes a parameter of a menu command and
+	 * is used by {@link MenuCommand#generateHelpTemplate(Param...)} to generate 
+	 * the detailed help text.
+	 * 
+	 * @author Yves Kaufmann
+	 *
+	 */
 	protected final class Param {
 		protected String name;
 		protected String desc;
 		protected boolean required;
 		
 		
+		/**
+		 * Create a optional parameter. 
+		 * 
+		 * @param name the name of a parameter.
+		 * @param desc the description of a parameter.
+		 */
 		public Param(String name, String desc) {
 			this(name, desc, false);
 		}
 		
+		/**
+		 * Create a parameter. 
+		 * 
+		 * @param name the name of a parameter.
+		 * @param desc the description of a parameter.
+		 * @param required if the parameter isn't optional.
+		 */
 		public Param(String name, String desc, boolean required) {
 			super();
 			this.name = name;
@@ -23,12 +54,28 @@ public abstract class MenuCommand extends ApplicationCommand {
 			this.required = required;
 		}
 	
+		/**
+		 * Return the name of the parameter.
+		 * 
+		 * @return the name of the parameter.
+		 */
 		public String getName() {
 			return name;
 		}
+		
+		/**
+		 * Return the description for this parameter.
+		 * 
+		 * @return the description of this parameter.
+		 */
 		public String getDesc() {
 			return desc;
 		}
+		/**
+		 * Checks if the parameter is required.
+		 * 
+		 * @return true if the parameter isn't optional.
+		 */
 		public boolean isRequired() {
 			return required;
 		}
@@ -39,6 +86,11 @@ public abstract class MenuCommand extends ApplicationCommand {
 			return String.format("%s%-10s %s\n", HelpMenu.INDENT, getName(), getDesc());
 		}
 		
+		/**
+		 * Returns well structured string of the name of the parameter.
+		 * 
+		 * @return the name.
+		 */
 		public String toStringOnlyName() {
 			String name = "<" + getName() + ">";
 			if(!isRequired()) {
@@ -49,15 +101,42 @@ public abstract class MenuCommand extends ApplicationCommand {
 		
 	}
 	
-	
+	/**
+	 * Create a Menu Command and assign it to the Application 'app'. <br>
+	 * 
+	 * @param app the application which should assigned to this command.
+	 */
 	public MenuCommand(Application app) {
 		super(app);
 	}
-
+	
+	/**
+	 * Returns the name of this command.
+	 * 
+	 * @return the name of this command.
+	 */
 	public abstract String getName();
+	
+	/**
+	 * Returns the description of this command.
+	 * 
+	 * @return the description of this command.
+	 */
 	public abstract String getDescription();
+	
+	/**
+	 * Returns a detailed help for this command.
+	 * @return the help text of this command.
+	 */
 	public abstract String getHelp();
 	
+	/**
+	 * Generate the help text for this command.
+	 * This class should used by subclasses to generate the help text.
+	 * 
+	 * @param params the parameter of this command.
+	 * @return the help text
+	 */
 	protected String generateHelpTemplate(Param...params) {
 		StringBuilder str = new StringBuilder(); 
 		str.append(getDescription() + StringUtil.LINE_SEPERATOR);
