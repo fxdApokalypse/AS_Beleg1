@@ -253,7 +253,6 @@ public class CommonMatrixOperations {
 		Stream<double[]> stream = Arrays.stream(matrix.toArray());  
 		CountOfZeroRows countOfZeroRows = new CountOfZeroRows();
 		stream.forEach(countOfZeroRows);
-		
 		return (int) (maxRank - countOfZeroRows.zeroRows);
 	}
 	
@@ -269,8 +268,7 @@ public class CommonMatrixOperations {
 		int cols = matrix.getNumCols();
 		double [][]_matrix = matrix.toArray();
 		
-		for(int piviotRow = 0; piviotRow < rows;piviotRow++) {
-			// TODO: support for non quadratic functions is required.
+		for(int piviotRow = 0; piviotRow < rows; piviotRow++) {
 			if (_matrix[piviotRow][piviotRow] == 0.0) {
 				ArrayUtils.swapRows(_matrix, piviotRow, rows - 1);
 			}
@@ -285,7 +283,8 @@ public class CommonMatrixOperations {
 		}
 		
 		CommonMatrixOperations.fillByArray(matrix, _matrix);
-		
+		System.out.println("RowEchelon");
+		matrix.print();
 		return matrix;
 	}
 }
