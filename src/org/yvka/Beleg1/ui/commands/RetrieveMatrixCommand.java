@@ -49,19 +49,27 @@ public class RetrieveMatrixCommand extends ApplicationCommand {
 	}
 	
 	private Matrix retrieveMatrix(String name) {
-
+		
+		boolean isTransposingRequested = name.endsWith("^t") || name.endsWith("^T");
+		if(isTransposingRequested) {
+			name = name.substring(0, name.length() - 2);
+		}
+		
 		if(!getContext().hasMatrix(name)) {
 			System.out.printf("The specified matrix '%s' does not exists.\n", name);
 			if(!shouldAskForNewMatrix) return null;
 			String prompt = String.format("Do you want to create the matrix '%s' ? [yes,no] ", name);
 			String answer = IOTools.readString(prompt).trim();
-			if(!"yes".equalsIgnoreCase(answer)) {
+			
+			if(!answer.startsWith("y")) {
 				return null; 
 			}
 			getMenuCommand("create").execute(name);
-		}
+		} 
 		
-		return getContext().getMatrix(name);
+		Matrix m = getContext().getMatrix(name);
+		
+		return isTransposingRequested ? m.transposition() : m;
 	}
 	
 	private String retrieveMatrixName(String name) {

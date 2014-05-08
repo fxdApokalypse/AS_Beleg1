@@ -22,7 +22,7 @@ public class TransposeMatrixMenu extends MenuCommand {
 			MatrixTO matrix = cmd.getMatrixTO();
 			MatrixTO transposedMatrix = new MatrixTO(
 					matrix.getMatrix().transposition(),
-					matrix.getName() + "_transposed"
+					matrix.getName() + "^T"
 			);			
 			new PrintMatrixCommand(transposedMatrix).execute();
 		} 

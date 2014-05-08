@@ -270,7 +270,7 @@ public class CommonMatrixOperations {
 		double [][]_matrix = matrix.toArray();
 		
 		for(int piviotRow = 0; piviotRow < rows;piviotRow++) {
-			
+			// TODO: support for non quadratic functions is required.
 			if (_matrix[piviotRow][piviotRow] == 0.0) {
 				ArrayUtils.swapRows(_matrix, piviotRow, rows - 1);
 			}
