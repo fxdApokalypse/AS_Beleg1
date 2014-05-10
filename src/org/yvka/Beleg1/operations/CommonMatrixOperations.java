@@ -267,24 +267,42 @@ public class CommonMatrixOperations {
 		int rows = matrix.getNumRows(); 
 		int cols = matrix.getNumCols();
 		double [][]_matrix = matrix.toArray();
+		int piviot = 0;
+		int i = 0;
+		double value = 0.0;
 		
-		for(int piviotRow = 0; piviotRow < rows; piviotRow++) {
-			if (_matrix[piviotRow][piviotRow] == 0.0) {
-				ArrayUtils.swapRows(_matrix, piviotRow, rows - 1);
+OUTER:	for(int row = 0; row < rows; row++) {
+			if(piviot >= cols) break OUTER;
+			// Step 1 search for non zero piviot element
+			i = row;
+			while(_matrix[i][piviot] == 0.0) {
+				i++;
+				if(rows == i) { // the row is already zero ?
+					i = row;    // then look at the next column
+					piviot++;
+					if(cols == piviot) break OUTER;
+				}
 			}
 			
-			for(int i = piviotRow + 1; i < rows; i++) {
-				double multipleOfPiviot = (_matrix[i][piviotRow] / _matrix[piviotRow][piviotRow]);
-			    for(int piviotCol = piviotRow; piviotCol < cols; piviotCol++) {
-			    	_matrix[i][piviotCol] = _matrix[i][piviotCol] - _matrix[piviotRow][piviotCol] * multipleOfPiviot;
-			    }
-			    _matrix[i][piviotRow] = 0.0;
-		    }
+			ArrayUtils.swapRows(_matrix, i, row);
+			
+			value = _matrix[row][piviot];
+			for(int col = 0; col < cols; col++) {
+				_matrix[row][col] /= value; 
+			}
+			
+			for(i = 0; i < rows; i++) {
+				if(i == row) continue; // skip Operation line
+				value = _matrix[i][piviot];
+	            for (int col = 0; col < cols; col++) {
+	            	_matrix[i][col] -= value * _matrix[row][col];
+	            }
+			}
+			
+			piviot++;
 		}
-		
+				
 		CommonMatrixOperations.fillByArray(matrix, _matrix);
-		System.out.println("RowEchelon");
-		matrix.print();
 		return matrix;
 	}
 }
