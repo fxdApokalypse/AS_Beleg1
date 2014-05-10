@@ -267,39 +267,42 @@ public class CommonMatrixOperations {
 		int rows = matrix.getNumRows(); 
 		int cols = matrix.getNumCols();
 		double [][]_matrix = matrix.toArray();
-		int piviot = 0;
-		int i = 0;
-		double value = 0.0;
+		int pivot = 0;
 		
-OUTER:	for(int row = 0; row < rows; row++) {
-			if(piviot >= cols) break OUTER;
-			// Step 1 search for non zero piviot element
-			i = row;
-			while(_matrix[i][piviot] == 0.0) {
-				i++;
-				if(rows == i) { // the row is already zero ?
-					i = row;    // then look at the next column
-					piviot++;
-					if(cols == piviot) break OUTER;
+OUTER:	for(int operationRow = 0; operationRow < rows; operationRow++) {
+			
+			if(pivot >= cols) break OUTER;
+			
+			// Step 1 search for non zero pivot element
+			int row = operationRow;
+			while(_matrix[row][pivot] == 0.0) {
+				row++;
+				if(rows == row) { 		   // Doesn't have a non zero pivot element ?
+					row = operationRow;    // Then look at the next column.
+					pivot++;
+					if(cols == pivot) break OUTER;
 				}
 			}
 			
-			ArrayUtils.swapRows(_matrix, i, row);
+			// Swap row with a non zero pivot element to the current operation row
+			ArrayUtils.swapRows(_matrix, row, operationRow);
 			
-			value = _matrix[row][piviot];
+			// Step 3 normalize operation row
+			double value = _matrix[operationRow][pivot];
 			for(int col = 0; col < cols; col++) {
-				_matrix[row][col] /= value; 
+				_matrix[operationRow][col] /= value; 
 			}
 			
-			for(i = 0; i < rows; i++) {
-				if(i == row) continue; // skip Operation line
-				value = _matrix[i][piviot];
+			// Step 4 eliminate all non pivot elements of the current column
+			for(row = 0; row < rows; row++) {
+				if(row == operationRow) continue; // skip operation row
+				value = _matrix[row][pivot];
 	            for (int col = 0; col < cols; col++) {
-	            	_matrix[i][col] -= value * _matrix[row][col];
+	            	_matrix[row][col] -= value * _matrix[operationRow][col];
 	            }
 			}
 			
-			piviot++;
+			pivot++;
 		}
 				
 		CommonMatrixOperations.fillByArray(matrix, _matrix);
