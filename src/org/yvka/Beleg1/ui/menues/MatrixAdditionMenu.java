@@ -27,7 +27,7 @@ public class MatrixAdditionMenu extends MenuCommand {
 		MatrixTO secondMatrix = cmd.getSecondOperand();
 		
 		try {
-			Matrix result = firstMatrix.getMatrix().add(secondMatrix.getMatrix());
+			Matrix result = firstMatrix.getMatrix().copy().add(secondMatrix.getMatrix());
 			MatrixTO matrixTO = new MatrixTO(result, firstMatrix.getName() + " + " + secondMatrix.getName());
 			new PrintMatrixCommand(matrixTO).execute();
 		} catch (IllegalMatrixComputationException e) {
