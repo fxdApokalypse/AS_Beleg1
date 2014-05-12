@@ -26,8 +26,12 @@ public class HelpMenu extends MenuCommand {
 			MatrixMenuSet commands = getApplication().getMenuSet();
 			Command command = commands.get(args[0]);
 			if(command instanceof MenuCommand) {
+				if(command instanceof UnknownMenu) {
+					command.execute(args);
+					return;
+				}
 				out.println(((MenuCommand) command).getHelp());
-			}
+			} 
 		}
 	}
 

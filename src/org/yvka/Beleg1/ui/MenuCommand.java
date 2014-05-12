@@ -152,7 +152,7 @@ public abstract class MenuCommand extends ApplicationCommand {
 			str.append("The " +  getName() + "commando has the following parameters:");
 			for(Param param : params) {
 				str.append(StringUtil.LINE_SEPERATOR);
-				str.append(String.format("%s%-10s %s\n", HelpMenu.INDENT, param.getName(), param.getDesc()));
+				str.append(String.format("%s%-10s%s%s\n", HelpMenu.INDENT, param.getName(),HelpMenu.INDENT, param.getDesc()));
 				
 			}
 		} else {
