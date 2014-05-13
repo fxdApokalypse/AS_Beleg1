@@ -1,2 +1,3 @@
-/doc/ApiDoc
-/bin
+/docs/ApiDoc
+/build
+/dist

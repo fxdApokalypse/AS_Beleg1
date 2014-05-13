@@ -1,0 +1,15 @@
+#! /bin/sh
+
+#
+# Bootstrap script for Unix like Systems.
+#
+
+matrix_home="$( cd $(dirname "$0") && pwd )"
+matrix_exec_args=$@
+matrix_launcher=MatrixCalculator.jar
+matrix_classpath="."
+java_cmd=java
+
+echo $matrix_home
+$java_cmd "-Dmatrix.home=$matrix_home" -cp $matrix_classpath -jar "$matrix_home/lib/$matrix_launcher" $matrix_exec_args
+
