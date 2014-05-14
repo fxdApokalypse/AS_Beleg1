@@ -9,7 +9,7 @@ import org.yvka.Beleg1.utils.StringUtil;
  * <br>
  * Each command has a name which helps the user to identify a command by his name. <br>
  * Each command has a description which describes his task to the user. <br>
- * Each command has a help text which delivered more detailed information to the user.br>
+ * Each command has a help text which delivered more detailed information to the user.<br>
  *  </p>
  * 
  * @author Yves Kaufmann

@@ -9,15 +9,13 @@ import org.yvka.Beleg1.ui.commands.BinaryMatrixOperandsRetrieverCommand;
 import org.yvka.Beleg1.ui.commands.PrintMatrixCommand;
 
 /**
- * <p>
- * A menu entry which is intended to calculate the product of two matrices.
- *   <br>
+ * A menu entry which is intended to calculate the product of two matrices. <br>
+ * <br>
  * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
  * <ol>
  * 	<li>firstMatrix - the name of the first matrix factor.</li>
  *  <li>secondtMatrix - the name of the second matrix factor.</li>
  * </ol>
- * </p> 
  * @author Yves Kaufmann
  *
  */

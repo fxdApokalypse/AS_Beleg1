@@ -26,7 +26,7 @@ public class StringUtil {
     * </code>
     * </p>
     * @param content the specified string
-    * @param title
+    * @param title the title of this matrix
     * @return the 'content' which is wrapped with vertical lines. 
     */
    public static String wrapWithVerticalBorders(String content, String title) {
@@ -63,7 +63,7 @@ public class StringUtil {
 	 * @param str the String to repeat.
 	 * @param times the number of times to repeat str.
 	 * @return the new string which contains <code>str</code> repeated.
-	 * @throws IllegalArgumentException if times <= 0
+	 * @throws IllegalArgumentException if times &lt;= 0
 	 */
 	public static String repeatString(String str, int times ) {
 		if(times <= 0) {

@@ -7,14 +7,12 @@ import org.yvka.Beleg1.ui.commands.RetrieveMatrixCommand;
 
 
 /**
- * <p>
- * A menu entry which is intended to print matrices.
+ * A menu entry which is intended to print matrices.<br>
  *  <br>
  * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
  * <ol>
  * 	<li>matrix - the name of a matrix which should be printed.</li>
  * </ol>
- * </p> 
  * @author Yves Kaufmann
  *
  */

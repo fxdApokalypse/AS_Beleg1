@@ -7,7 +7,6 @@ import org.yvka.Beleg1.ui.IOTools;
 import org.yvka.Beleg1.ui.MenuCommand;
 
 /**
- * <p>
  * A menu entry which is intended to create new matrices.<br>
  * <br>
  * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
@@ -15,7 +14,6 @@ import org.yvka.Beleg1.ui.MenuCommand;
  * 	<li>name - the name of the new matrix</li>
  * </ol>
  * 
- * </p> 
  * @author Yves Kaufmann
  *
  */

@@ -7,14 +7,12 @@ import org.yvka.Beleg1.ui.MenuCommand;
 import org.yvka.Beleg1.ui.commands.RetrieveMatrixCommand;
 
 /**
- * <p>
- * A menu entry which is intended to determine the rank of a specified matrix.
- *  <br>
+ * A menu entry which is intended to determine the rank of a specified matrix.<br>
+ * <br>
  * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
  * <ol>
  * 	<li>name - the name of a matrix for which the rank should be determined.</li>
  * </ol>
- * </p> 
  * @author Yves Kaufmann
  *
  */

@@ -6,14 +6,12 @@ import org.yvka.Beleg1.ui.MenuCommand;
 import org.yvka.Beleg1.ui.commands.RetrieveMatrixCommand;
 
 /**
- * <p>
- * A menu entry which is intended to delete already created matrices.
+ * A menu entry which is intended to delete already created matrices.<br>
  * <br>
  * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
  * <ol>
  * 	<li>name - the name of a matrix which should be deleted.</li>
  * </ol>
- * </p> 
  * @author Yves Kaufmann
  *
  */

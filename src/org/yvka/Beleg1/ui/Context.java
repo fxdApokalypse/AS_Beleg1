@@ -10,13 +10,13 @@ import org.yvka.Beleg1.matrix.Matrix;
 /**
  * <p>
  * The context of the application is intend to share 
- * information between {@link ApplicationCommands}. <br>
+ * information between {@link ApplicationCommand}. <br>
  * <br>
  * Users of this class are capable to share Numbers and matrices with each other. <br>
  * <br>
  * </p>
  * @author Yves Kaufmann
- * @see Commmand
+ * @see Command
  * @see ApplicationCommand
  */
 public class Context {

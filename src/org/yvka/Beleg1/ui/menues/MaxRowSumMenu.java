@@ -8,14 +8,12 @@ import org.yvka.Beleg1.ui.commands.RetrieveMatrixCommand;
 import org.yvka.Beleg1.utils.StringUtil;
 
 /**
- * <p>
- * A menu entry which is intended to determine the max valued row sum of a specified matrix.
- *   <br>
+ * A menu entry which is intended to determine the max valued row sum of a specified matrix.<br>
+ * <br>
  * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
  * <ol>
  * 	<li>matrix - the name of a matrix for which the max row sum should be determined.</li>
  * </ol>
- * </p> 
  * @author Yves Kaufmann
  *
  */

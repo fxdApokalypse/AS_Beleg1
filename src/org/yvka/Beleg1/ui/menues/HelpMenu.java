@@ -8,15 +8,13 @@ import org.yvka.Beleg1.ui.MatrixMenuSet;
 import org.yvka.Beleg1.ui.MenuCommand;
 
 /**
- * <p>
  * A menu entry which is intended to print the help for the application or
- * for a single menu command.
+ * for a single menu command.<br>
  * <br>
  * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
  * <ol>
  * 	<li>command - the command for which the help should be printed.</li>
  * </ol>
- * </p> 
  * @author Yves Kaufmann
  *
  */

@@ -10,15 +10,13 @@ import org.yvka.Beleg1.ui.commands.RetrieveMatrixCommand;
 
 
 /**
- * <p>
- * A menu entry which is intended to calculate the scalar multiplication a matrix and a scalar.
- *   <br>
+ * A menu entry which is intended to calculate the scalar multiplication a matrix and a scalar.<br>
+ * <br>
  * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
  * <ol>
  * 	<li>matrix - the name of a matrix which should be multiplied by a scalar value.</li>
  *  <li>scalar - the scalar value.</li>
  * </ol>
- * </p> 
  * @author Yves Kaufmann
  *
  */
