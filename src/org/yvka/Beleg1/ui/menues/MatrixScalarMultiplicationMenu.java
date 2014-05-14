@@ -62,7 +62,7 @@ public class MatrixScalarMultiplicationMenu extends MenuCommand {
 
 	@Override
 	public String getDescription() {
-		return "Calculates the a scalar matrix multiplication of a matrix and a scalar.";
+		return "Calculates a scalar matrix multiplication.";
 	}
 
 	@Override

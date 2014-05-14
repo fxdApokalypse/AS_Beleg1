@@ -58,7 +58,7 @@ public class HelpMenu extends MenuCommand {
 		out.println("The most commonly used matrix commands are:");
 		
 		for(MenuCommand cmd : menuSet.getAllMenuCommands()) {
-			out.printf("%s%-10s %s\n", INDENT, cmd.getName(), cmd.getDescription());
+			out.printf("%s%-14s %s\n", INDENT, cmd.getName(), cmd.getDescription());
 		}
 		out.println();
 	}
