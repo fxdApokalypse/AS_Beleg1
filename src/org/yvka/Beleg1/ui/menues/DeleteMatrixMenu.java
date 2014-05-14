@@ -5,8 +5,25 @@ import org.yvka.Beleg1.ui.MatrixTO;
 import org.yvka.Beleg1.ui.MenuCommand;
 import org.yvka.Beleg1.ui.commands.RetrieveMatrixCommand;
 
+/**
+ * <p>
+ * A menu entry which is intended to delete already created matrices.
+ * <br>
+ * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
+ * <ol>
+ * 	<li>name - the name of a matrix which should be deleted.</li>
+ * </ol>
+ * </p> 
+ * @author Yves Kaufmann
+ *
+ */
 public class DeleteMatrixMenu extends MenuCommand {
-
+	
+	/**
+	 * Creates the Menu and assigns the application 'app'.  
+	 * 
+	 * @param app the assigned application.
+	 */
 	public DeleteMatrixMenu(Application app) {
 		super(app);
 	}

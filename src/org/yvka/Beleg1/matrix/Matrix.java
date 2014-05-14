@@ -1,6 +1,6 @@
-package org.yvka.Beleg1.data;
+package org.yvka.Beleg1.matrix;
 
-import org.yvka.Beleg1.data.iteration.MatrixElement;
+import org.yvka.Beleg1.matrix.iteration.MatrixElement;
 
 
 /**

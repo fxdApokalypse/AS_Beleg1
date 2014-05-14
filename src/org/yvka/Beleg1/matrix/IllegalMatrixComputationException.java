@@ -1,4 +1,4 @@
-package org.yvka.Beleg1.data;
+package org.yvka.Beleg1.matrix;
 
 /**
  * <p>

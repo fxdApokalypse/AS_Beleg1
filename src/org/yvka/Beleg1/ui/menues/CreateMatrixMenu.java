@@ -1,21 +1,37 @@
 package org.yvka.Beleg1.ui.menues;
 
-import org.yvka.Beleg1.data.Matrix;
-import org.yvka.Beleg1.data.MatrixImpl;
+import org.yvka.Beleg1.matrix.Matrix;
+import org.yvka.Beleg1.matrix.MatrixFactory;
 import org.yvka.Beleg1.ui.Application;
 import org.yvka.Beleg1.ui.IOTools;
 import org.yvka.Beleg1.ui.MenuCommand;
 
-
+/**
+ * <p>
+ * A menu entry which is intended to create new matrices.<br>
+ * <br>
+ * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
+ * <ol>
+ * 	<li>name - the name of the new matrix</li>
+ * </ol>
+ * 
+ * </p> 
+ * @author Yves Kaufmann
+ *
+ */
 public class CreateMatrixMenu extends MenuCommand {
-
+	
+	/**
+	 * Creates the Menu and assigns the application 'app'.  
+	 * 
+	 * @param app the assigned application.
+	 */
 	public CreateMatrixMenu(Application app) {
 		super(app);
 	}
 	
 	@Override
 	public void execute(String... args) {
-		Matrix matrix = null;
 		double [][]data = null;
 		int rows = 0; int cols = 0;
 		String name = retrieveMatrixName(args);
@@ -32,8 +48,8 @@ public class CreateMatrixMenu extends MenuCommand {
 				); 
 			}
 		}
-		
-		getApplication().getContext().putMatrix(name, new MatrixImpl(data));
+		Matrix matrix = MatrixFactory.get().createMatrixFromArray(data);
+		getApplication().getContext().putMatrix(name, matrix);
 	}
 	
 	private String retrieveMatrixName(String... args) {
@@ -43,15 +59,16 @@ public class CreateMatrixMenu extends MenuCommand {
 		}
 		
 		do {
-			if(name == null) { name = IOTools.readString("Name of the new matrix: "); }
+			if(name == null) { 
+				name = IOTools.readString("Name of the new matrix: "); 
+			}
 			name = name.trim();
 			
 			if("".equals(name)) {
 				System.out.println("The specified matrix name isn't valid.Please try it again.");
 				name = null;
 			}
-			else
-			if(getApplication().getContext().hasMatrix(name)) {
+			else if(getApplication().getContext().hasMatrix(name)) {
 				System.out.println("The specified matrix already exists.Please try it again.");
 				name = null;
 			} else break;

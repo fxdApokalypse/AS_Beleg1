@@ -3,9 +3,9 @@ package org.yvka.Beleg1.operations.test;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.yvka.Beleg1.data.Matrix;
-import org.yvka.Beleg1.data.MatrixFactory;
-import org.yvka.Beleg1.operations.CommonMatrixOperations;
+import org.yvka.Beleg1.matrix.Matrix;
+import org.yvka.Beleg1.matrix.MatrixFactory;
+import org.yvka.Beleg1.matrix.operations.CommonMatrixOperations;
 
 /**
  * TestCases which make sure that the rank determination functions correctly. 

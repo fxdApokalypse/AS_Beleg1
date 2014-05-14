@@ -1,7 +1,8 @@
 
 /**
  * 
- * Contains the classes for the command line menus. 
+ * Contains the menu commands which encapsulates the logic of a menu entry.<br>
+ * 
  * 
  * @author Yves Kaufmann
  *

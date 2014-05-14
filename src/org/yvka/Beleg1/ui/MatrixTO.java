@@ -1,6 +1,6 @@
 package org.yvka.Beleg1.ui;
 
-import org.yvka.Beleg1.data.Matrix;
+import org.yvka.Beleg1.matrix.Matrix;
 
 /**
  * A matrix transfer object which is intend to transfer matrices between {@link ApplicationCommand} objects.

@@ -5,7 +5,7 @@ import org.yvka.Beleg1.utils.StringUtil;
 
 /**
  * <p>
- * A MenuCommand is a command in the command line user interface.<br>
+ * A MenuCommand is a command which is a encapsulated menu entry of the user interface.<br>
  * <br>
  * Each command has a name which helps the user to identify a command by his name. <br>
  * Each command has a description which describes his task to the user. <br>

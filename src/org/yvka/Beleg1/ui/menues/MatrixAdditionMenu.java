@@ -1,15 +1,33 @@
 package org.yvka.Beleg1.ui.menues;
 
-import org.yvka.Beleg1.data.IllegalMatrixComputationException;
-import org.yvka.Beleg1.data.Matrix;
+import org.yvka.Beleg1.matrix.IllegalMatrixComputationException;
+import org.yvka.Beleg1.matrix.Matrix;
 import org.yvka.Beleg1.ui.Application;
 import org.yvka.Beleg1.ui.MatrixTO;
 import org.yvka.Beleg1.ui.MenuCommand;
 import org.yvka.Beleg1.ui.commands.BinaryMatrixOperandsRetrieverCommand;
 import org.yvka.Beleg1.ui.commands.PrintMatrixCommand;
 
+/**
+ * <p>
+ * A menu entry which is intended to calculate the sum of two matrices.
+ *  <br>
+ * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
+ * <ol>
+ * 	<li>firstMatrix - the name of the first matrix summand.</li>
+ *  <li>secondtMatrix - the name of the second matrix summand.</li>
+ * </ol>
+ * </p> 
+ * @author Yves Kaufmann
+ *
+ */
 public class MatrixAdditionMenu extends MenuCommand {
-
+	
+	/**
+	 * Creates the Menu and assigns the application 'app'.  
+	 * 
+	 * @param app the assigned application.
+	 */
 	public MatrixAdditionMenu(Application app) {
 		super(app);
 	}

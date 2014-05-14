@@ -1,13 +1,30 @@
 package org.yvka.Beleg1.ui.menues;
 
-import org.yvka.Beleg1.operations.CommonMatrixOperations;
+import org.yvka.Beleg1.matrix.operations.CommonMatrixOperations;
 import org.yvka.Beleg1.ui.Application;
 import org.yvka.Beleg1.ui.MatrixTO;
 import org.yvka.Beleg1.ui.MenuCommand;
 import org.yvka.Beleg1.ui.commands.RetrieveMatrixCommand;
 
+/**
+ * <p>
+ * A menu entry which is intended to determine the rank of a specified matrix.
+ *  <br>
+ * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
+ * <ol>
+ * 	<li>name - the name of a matrix for which the rank should be determined.</li>
+ * </ol>
+ * </p> 
+ * @author Yves Kaufmann
+ *
+ */
 public class MarixRankMenu extends MenuCommand {
-
+	
+	/**
+	 * Creates the Menu and assigns the application 'app'.  
+	 * 
+	 * @param app the assigned application.
+	 */
 	public MarixRankMenu(Application app) {
 		super(app);
 	}

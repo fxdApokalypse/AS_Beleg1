@@ -1,6 +1,6 @@
 package org.yvka.Beleg1.ui.menues;
 
-import org.yvka.Beleg1.data.Matrix;
+import org.yvka.Beleg1.matrix.Matrix;
 import org.yvka.Beleg1.ui.Application;
 import org.yvka.Beleg1.ui.IOTools;
 import org.yvka.Beleg1.ui.MatrixTO;
@@ -9,9 +9,26 @@ import org.yvka.Beleg1.ui.commands.PrintMatrixCommand;
 import org.yvka.Beleg1.ui.commands.RetrieveMatrixCommand;
 
 
-
+/**
+ * <p>
+ * A menu entry which is intended to calculate the scalar multiplication a matrix and a scalar.
+ *   <br>
+ * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
+ * <ol>
+ * 	<li>matrix - the name of a matrix which should be multiplied by a scalar value.</li>
+ *  <li>scalar - the scalar value.</li>
+ * </ol>
+ * </p> 
+ * @author Yves Kaufmann
+ *
+ */
 public class MatrixScalarMultiplicationMenu extends MenuCommand {
-
+	
+	/**
+	 * Creates the Menu and assigns the application 'app'.  
+	 * 
+	 * @param app the assigned application.
+	 */
 	public MatrixScalarMultiplicationMenu(Application app) {
 		super(app);
 	}
@@ -42,12 +59,12 @@ public class MatrixScalarMultiplicationMenu extends MenuCommand {
 
 	@Override
 	public String getName() {
-		return "scalarProd";
+		return "scalarMultiply";
 	}
 
 	@Override
 	public String getDescription() {
-		return "Calculates the scalar matrix product of a matrix.";
+		return "Calculates the a scalar matrix multiplication of a matrix and a scalar.";
 	}
 
 	@Override

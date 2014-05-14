@@ -6,8 +6,25 @@ import org.yvka.Beleg1.ui.MenuCommand;
 import org.yvka.Beleg1.ui.commands.PrintMatrixCommand;
 import org.yvka.Beleg1.ui.commands.RetrieveMatrixCommand;
 
+/**
+ * <p>
+ * A menu entry which is intended to transpose matrices.
+ * <br>
+ * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
+ * <ol>
+ * 	<li>matrix - the name of a matrix which should be transposed.</li>
+ * </ol>
+ * </p> 
+ * @author Yves Kaufmann
+ *
+ */
 public class TransposeMatrixMenu extends MenuCommand {
-
+	
+	/**
+	 * Creates the Menu and assigns the application 'app'.  
+	 * 
+	 * @param app the assigned application.
+	 */
 	public TransposeMatrixMenu(Application app) {
 		super(app);
 	}

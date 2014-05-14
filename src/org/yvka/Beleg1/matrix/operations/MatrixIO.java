@@ -1,4 +1,4 @@
-package org.yvka.Beleg1.operations;
+package org.yvka.Beleg1.matrix.operations;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -11,8 +11,8 @@ import java.util.Formatter;
 import java.util.Scanner;
 import java.util.function.ToDoubleFunction;
 
-import org.yvka.Beleg1.data.Matrix;
-import org.yvka.Beleg1.data.MatrixImpl;
+import org.yvka.Beleg1.matrix.Matrix;
+import org.yvka.Beleg1.matrix.MatrixImpl;
 
 /**
  * <p>

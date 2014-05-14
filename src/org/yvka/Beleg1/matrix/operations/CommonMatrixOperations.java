@@ -1,13 +1,13 @@
-package org.yvka.Beleg1.operations;
+package org.yvka.Beleg1.matrix.operations;
 
 import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
-import org.yvka.Beleg1.data.IllegalMatrixComputationException;
-import org.yvka.Beleg1.data.Matrix;
-import org.yvka.Beleg1.data.MatrixFactory;
-import org.yvka.Beleg1.data.iteration.MatrixElement;
+import org.yvka.Beleg1.matrix.IllegalMatrixComputationException;
+import org.yvka.Beleg1.matrix.Matrix;
+import org.yvka.Beleg1.matrix.MatrixFactory;
+import org.yvka.Beleg1.matrix.iteration.MatrixElement;
 import org.yvka.Beleg1.utils.ArrayUtils;
 import org.yvka.Beleg1.utils.ArrayUtils.ArrayDimensions;
 

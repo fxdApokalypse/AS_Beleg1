@@ -2,18 +2,36 @@ package org.yvka.Beleg1.ui.menues;
 
 import static java.lang.System.out;
 
-import java.util.List;
-
 import org.yvka.Beleg1.ui.Application;
 import org.yvka.Beleg1.ui.Command;
 import org.yvka.Beleg1.ui.MatrixMenuSet;
 import org.yvka.Beleg1.ui.MenuCommand;
-import org.yvka.Beleg1.utils.StringUtil;
 
+/**
+ * <p>
+ * A menu entry which is intended to print the help for the application or
+ * for a single menu command.
+ * <br>
+ * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
+ * <ol>
+ * 	<li>command - the command for which the help should be printed.</li>
+ * </ol>
+ * </p> 
+ * @author Yves Kaufmann
+ *
+ */
 public class HelpMenu extends MenuCommand {
 	
+	/**
+	 * The default indenting which is used for the help page.
+	 */
 	public static final String INDENT = "   ";
 	
+	/**
+	 * Creates the Menu and assigns the application 'app'.  
+	 * 
+	 * @param app the assigned application.
+	 */
 	public HelpMenu(Application app) {
 		super(app);
 	}

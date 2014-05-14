@@ -1,21 +1,32 @@
 package org.yvka.Beleg1.ui.menues;
 
-import org.yvka.Beleg1.data.Matrix;
-import org.yvka.Beleg1.operations.MatrixIO;
 import org.yvka.Beleg1.ui.Application;
-import org.yvka.Beleg1.ui.MatrixTO;
 import org.yvka.Beleg1.ui.MenuCommand;
 import org.yvka.Beleg1.ui.commands.PrintMatrixCommand;
 import org.yvka.Beleg1.ui.commands.RetrieveMatrixCommand;
-import org.yvka.Beleg1.utils.StringUtil;
 
+
+/**
+ * <p>
+ * A menu entry which is intended to print matrices.
+ *  <br>
+ * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
+ * <ol>
+ * 	<li>matrix - the name of a matrix which should be printed.</li>
+ * </ol>
+ * </p> 
+ * @author Yves Kaufmann
+ *
+ */
 public class PrintMatrixMenuCommand extends MenuCommand {
 	
-	private MatrixTO matrixTO = null;
-	
+	/**
+	 * Creates the Menu and assigns the application 'app'.  
+	 * 
+	 * @param app the assigned application.
+	 */
 	public PrintMatrixMenuCommand(Application app) {
 		super(app);
-		matrixTO = null;
 	}
 		
 	@Override

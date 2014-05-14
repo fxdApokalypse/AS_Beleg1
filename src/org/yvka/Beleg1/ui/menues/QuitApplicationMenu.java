@@ -1,13 +1,23 @@
 package org.yvka.Beleg1.ui.menues;
 
 import org.yvka.Beleg1.ui.Application;
-import org.yvka.Beleg1.ui.Command;
 import org.yvka.Beleg1.ui.MenuCommand;
 
 /**
+ * <p>
+ * A menu entry which is intended to quit the assigned application.
+ * 
+ * </p> 
+ * @author Yves Kaufmann
+ *
  */
 public class QuitApplicationMenu extends MenuCommand {
-
+	
+	/**
+	 * Creates the Menu and assigns the application 'app'.  
+	 * 
+	 * @param app the assigned application.
+	 */
 	public QuitApplicationMenu(Application app) {
 		super(app);
 	}

@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 /**
  * <p>
- * A CommandSet is a set of command name command instance pairs.<br>
+ * A CommandSet is a set of named command pairs.<br>
  * <br>
  * This class is to intended to store, retrieve and remove command by his names.<br>
  * Furthermore this is itself a command which dispatches the assigned arguments<br>

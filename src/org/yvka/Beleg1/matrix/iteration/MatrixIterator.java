@@ -1,9 +1,9 @@
-package org.yvka.Beleg1.data.iteration;
+package org.yvka.Beleg1.matrix.iteration;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import org.yvka.Beleg1.data.Matrix;
+import org.yvka.Beleg1.matrix.Matrix;
 
 /**
  * <p>

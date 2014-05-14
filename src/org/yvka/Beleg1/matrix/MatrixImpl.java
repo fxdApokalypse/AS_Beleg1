@@ -1,11 +1,11 @@
-package org.yvka.Beleg1.data;
+package org.yvka.Beleg1.matrix;
 
 import java.util.Iterator;
 
-import org.yvka.Beleg1.data.iteration.MatrixElement;
-import org.yvka.Beleg1.data.iteration.MatrixIterator;
-import org.yvka.Beleg1.operations.CommonMatrixOperations;
-import org.yvka.Beleg1.operations.MatrixIO;
+import org.yvka.Beleg1.matrix.iteration.MatrixElement;
+import org.yvka.Beleg1.matrix.iteration.MatrixIterator;
+import org.yvka.Beleg1.matrix.operations.CommonMatrixOperations;
+import org.yvka.Beleg1.matrix.operations.MatrixIO;
 
 
 /**

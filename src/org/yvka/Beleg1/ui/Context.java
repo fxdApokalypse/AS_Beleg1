@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-import org.yvka.Beleg1.data.Matrix;
+import org.yvka.Beleg1.matrix.Matrix;
 
 /**
  * <p>

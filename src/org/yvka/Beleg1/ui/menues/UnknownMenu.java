@@ -2,9 +2,24 @@ package org.yvka.Beleg1.ui.menues;
 
 import org.yvka.Beleg1.ui.MenuCommand;
 
-
+/**
+ * <p>
+ * A menu command which prints a error message that a passed argument
+ * isn't a valid matrix command. 
+ *   <br>
+ * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
+ * <ol>
+ * 	<li>command - the name of a command which should be marked in the error message.</li>
+ * </ol>
+ * </p> 
+ * @author Yves Kaufmann
+ *
+ */
 public final class UnknownMenu extends MenuCommand {
-
+	
+	/**
+	 * Creates the UnknownCommand.
+	 */
 	public UnknownMenu() {
 		super(null);
 	}

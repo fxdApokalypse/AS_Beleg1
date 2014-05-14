@@ -1,4 +1,4 @@
-package org.yvka.Beleg1.operations;
+package org.yvka.Beleg1.matrix.operations;
 
 
 /**

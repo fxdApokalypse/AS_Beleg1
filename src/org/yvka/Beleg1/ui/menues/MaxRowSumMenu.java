@@ -1,16 +1,33 @@
 package org.yvka.Beleg1.ui.menues;
 
-import org.yvka.Beleg1.operations.CommonMatrixOperations;
+import org.yvka.Beleg1.matrix.operations.CommonMatrixOperations;
 import org.yvka.Beleg1.ui.Application;
 import org.yvka.Beleg1.ui.MatrixTO;
 import org.yvka.Beleg1.ui.MenuCommand;
 import org.yvka.Beleg1.ui.commands.RetrieveMatrixCommand;
 import org.yvka.Beleg1.utils.StringUtil;
 
+/**
+ * <p>
+ * A menu entry which is intended to determine the max valued row sum of a specified matrix.
+ *   <br>
+ * List of supported parameters which are in the expected order of {@link #execute(String...)}.  
+ * <ol>
+ * 	<li>matrix - the name of a matrix for which the max row sum should be determined.</li>
+ * </ol>
+ * </p> 
+ * @author Yves Kaufmann
+ *
+ */
 public class MaxRowSumMenu extends MenuCommand {
 
 	private static final String RETRIEVE_MATRIX_PROMPT_TEXT = "For which matrix the most valued row sum should be determined : ";
-
+	
+	/**
+	 * Creates the Menu and assigns the application 'app'.  
+	 * 
+	 * @param app the assigned application.
+	 */
 	public MaxRowSumMenu(Application app) {
 		super(app);
 	}
