@@ -1,4 +1,4 @@
-package org.yvka.Beleg1.data.iteration;
+package org.yvka.Beleg1.matrix.iteration;
 
 /**
  * <p>

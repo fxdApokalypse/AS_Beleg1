@@ -1,6 +1,6 @@
-package org.yvka.Beleg1.data;
+package org.yvka.Beleg1.matrix;
 
-import org.yvka.Beleg1.data.iteration.MatrixElement;
+import org.yvka.Beleg1.matrix.iteration.MatrixElement;
 
 
 /**
@@ -11,7 +11,41 @@ import org.yvka.Beleg1.data.iteration.MatrixElement;
  * @author Yves Kaufmann
  */
 public interface Matrix extends Iterable<MatrixElement> {
-
+	
+	/**
+	 * Decouples the creation of a matrix instance from its concrete implementation.
+	 * This is a GoF Design Pattern called Factory. http://de.wikipedia.org/wiki/Fabrikmethode
+	 * 
+	 * @author Yves Kaufmann
+	 *
+	 */
+	public interface Factory {
+		
+		/**
+		 * <p>
+		 * Create a new matrix with the specified dimension and fills 
+		 * her elements with zero. 
+		 * </p>
+		 * @param rows <br>the Matrix's rows number.<br>
+		 * 			   Must be inside the interval [1,7].
+		 * @param cols <br>the Matrix's columns number.<br>
+		 * 			   Must be inside the interval [1,7].
+		 * @return the new created matrix instance.
+		 */
+		Matrix createMatrix(int rows, int cols);
+		
+		/**
+		 * <p>
+		 * Create a new matrix by the specified data array,
+		 * which contains all elements of the array.
+		 * </p>
+		 * 
+		 * @param data the Elements of the array.
+		 * @return the new created matrix instance.
+		 */
+		Matrix createMatrixFromArray(double [][] data);
+	}
+	
 	/**
 	 * <p>
 	 * Adds a scalar 'value' to the specified matrix element.<br>

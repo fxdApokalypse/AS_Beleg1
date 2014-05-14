@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<HTML>
+  <HEAD>
+    <TITLE>MatrixCalculator - API</TITLE>
+  </HEAD>
+  <BODY>
+	<h2>Indruction: </h2>
+    This document describes the architecture and the API of the MatrixCalculator which is the result of the first assignment work of the SS/14 for
+    the subject programming II.
+    <h2>Task description of the assigment</h2>
+    <p>
+	It's to develop a application for matrix computations which meet the following tasks:
+	<ul>
+		<li>add matrices</li>
+		<li>multiply matrices</li>
+		<li>multiply matrices</li>
+		<li>multiply matrices with scalar</li>
+		<li>transpose matrices</li>
+		<li>rank determination of matrices</li>
+		<li>determination of the largest row sum of a matrix</li>
+		<li>print matrices</li>
+		<li>create matrices and store it for later usage (but not persistent)</li>
+		<li>control the above listed tasks with a user interface</li>
+	</ul>
+    </p>
+    <h2>The User Interface</h2>
+    <p>
+    The user interface is a console commander interpreter which waits for a {@link org.yvka.Beleg1.ui.MenuCommand} and their list of parameters. 
+    Each command is dedicated to only one task,&nbsp; has a unique name and a list of possible parameters. Which can be obtained by the {@link org.yvka.Beleg1.ui.menues.HelpMenu help} command.
+    To improve the usability the paramaters can be leave off,&nbsp; hence the {@link org.yvka.Beleg1.ui.MenuCommand} have to ask the user for the missing informations if the user leave off a parameter. 
+    </p>
+    <h2>The Architecture</h2>
+    <p>
+    The application is split into two parts: 
+    <ol>
+		<li>The domain objects [org.yvka.Beleg1.matrix.*] - which contains only classes for matrix computations.<br><br></li>
+		<li>The user interace  [org.yvka.Beleg1.ui.*] - which contains only classes which implements the user interface. The user Interace is split into two main components:<br><br>
+		<ul>
+			<li>{@link org.yvka.Beleg1.ui.Application} - is responsiple to handle the entered user commands
+				and executing the corresponding  {@link org.yvka.Beleg1.ui.MenuCommand} which is an encapsulated menu entry.&nbsp; Because of that the {@link org.yvka.Beleg1.ui.Application} is a composition of {@link org.yvka.Beleg1.ui.MenuCommand}.Further more the {@link org.yvka.Beleg1.ui.Application} is the execution context of all commands,&nbsp; hence a application has a {@link org.yvka.Beleg1.ui.Context} which is used to share information between commands.&nbsp; Further more the application serves as {@link org.yvka.Beleg1.ui.MenuCommand} dispatcher.&nbsp; <br><br>
+			</li>
+			<li>{@link org.yvka.Beleg1.ui.Command} - is responsiple to handle a unique dedicated task which have to be reuseable.&nbsp; To Enable 
+			a Command to share information with other commands,&nbsp; it needs to assign to a Application so that it can share informations with the context of the application.&nbsp; For this purpose there is the abstract class {@link org.yvka.Beleg1.ui.ApplicationCommand} which enables commands to share informations.&nbsp; {@link org.yvka.Beleg1.ui.ApplicationCommand}s are called by {@link org.yvka.Beleg1.ui.MenuCommand}s which itself are called by the application.&nbsp; Further more {@link org.yvka.Beleg1.ui.MenuCommand} are only responsible to handle user input,&nbsp; error handling,&nbsp; interface handling,&nbsp; hence the MenuCommand have to delegate to other commands to fulfill his task.&nbsp; <br><br>
+			</li>
+		<ul>
+		</li>
+    </ol>
+    <!-- UML Diagramm Placeholder -->
+    </p>
+    @version 1.0
+    @author Yves Kaufmann
+  </BODY>
+</HTML>

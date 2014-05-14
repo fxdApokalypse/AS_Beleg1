@@ -5,4 +5,4 @@
  * @since 1.0
  * @author Yves Kaufmann
  */
-package org.yvka.Beleg1.operations;
+package org.yvka.Beleg1.matrix.operations;

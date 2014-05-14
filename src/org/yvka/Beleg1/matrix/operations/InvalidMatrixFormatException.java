@@ -1,15 +1,16 @@
-package org.yvka.Beleg1.data;
+package org.yvka.Beleg1.matrix.operations;
+
 
 /**
  * <p>
- * This exception is raised when, an matrix computations error occurs.
+ * This exception is raised when, an matrix read error occurs.
  * </p>
  * 
  * @see Exception {@link Exception}
  * @author Yves Kaufmann
  * 
  */
-public class IllegalMatrixComputationException extends Exception {
+public class InvalidMatrixFormatException extends Exception {
 
 	/**
 	 * Just the serial version id
@@ -21,7 +22,7 @@ public class IllegalMatrixComputationException extends Exception {
 	 * 
 	 * @see Exception {@link Exception}
 	 */
-	public IllegalMatrixComputationException() {
+	public InvalidMatrixFormatException() {
 		super();
 
 	}
@@ -33,7 +34,7 @@ public class IllegalMatrixComputationException extends Exception {
 	 * @param cause the cause of this exception.
 	 * @see Exception {@link Exception}
 	 */
-	public IllegalMatrixComputationException(String message, Throwable cause ) {
+	public InvalidMatrixFormatException(String message, Throwable cause ) {
 		super(message, cause );
 
 	}
@@ -44,9 +45,7 @@ public class IllegalMatrixComputationException extends Exception {
 	 * @param message the detail message.
 	 * @see Exception {@link Exception}
 	 */
-	public IllegalMatrixComputationException(String message) {
+	public InvalidMatrixFormatException(String message) {
 		super(message);
-
 	}
-	
 }
