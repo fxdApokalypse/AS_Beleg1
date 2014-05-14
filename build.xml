@@ -36,6 +36,7 @@
 	<target name="javadoc" depends="compile">
 		<javadoc packagenames="org.yvka.Beleg1.*"
 		           sourcepath="${src}"
+				   overview="${src}/overview.html"	
 		           defaultexcludes="yes"
 		           destdir="docs/ApiDoc"
 		           author="true"
