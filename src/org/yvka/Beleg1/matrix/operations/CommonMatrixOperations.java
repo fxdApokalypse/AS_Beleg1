@@ -301,7 +301,6 @@ OUTER:	for(int operationRow = 0; operationRow < rows; operationRow++) {
 	            	_matrix[row][col] -= value * _matrix[operationRow][col];
 	            }
 			}
-			
 			pivot++;
 		}
 				
