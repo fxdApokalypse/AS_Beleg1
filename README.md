@@ -1,7 +1,8 @@
 ## Induction:
 
 This document describes the architecture and the API of the MatrixCalculator which is the result of the first assignment work of the SS/14 for the subject programming II.
-Task description of the assigment
+
+#Task description of the assigment
 
 It's to develop a application for matrix computations which meet the following tasks:
 
