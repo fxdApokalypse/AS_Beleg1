@@ -1,4 +1,4 @@
-# AS Beleg 1 - Matrix Calculator
+# Matrix Calculator
 
 ## Induction:
 
